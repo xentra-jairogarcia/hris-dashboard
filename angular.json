@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "6e7f0939-afbe-43e1-a26e-04159b0af366"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -79,6 +80,24 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "hris-dashboard:build",
+            "compodoc": false,
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "hris-dashboard:build",
+            "compodoc": false,
+            "outputDir": "storybook-static"
+          }
         }
       }
     }
