@@ -1,0 +1,41 @@
+<div class="app-layout">
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="xentra.png" alt="Xentra Logo" class="logo">
+        </div>
+        
+        <div class="nav-menu">
+            <ul>
+                <li><a routerLink="/dashboard" routerLinkActive="active" class="nav-link dashboard">Dashboard</a></li>
+                <li><a routerLink="/employees" routerLinkActive="active" class="nav-link employees">Employees</a></li>
+                <li><a routerLink="/projects" routerLinkActive="active" class="nav-link projects">Projects</a></li>
+                <li><a routerLink="/request" routerLinkActive="active" class="nav-link request">Request</a></li>
+                <li><a routerLink="/onboarding" routerLinkActive="active" class="nav-link onboarding">Onboarding</a></li>
+                <li><a routerLink="/performance" routerLinkActive="active" class="nav-link performance">Performance</a></li>
+                <li><a routerLink="/reports" routerLinkActive="active" class="nav-link reports">Reports</a></li>
+                <li><a routerLink="/notifications" routerLinkActive="active" class="nav-link notifications">Notifications<span class="badge">3</span></a></li>
+                <li><a routerLink="/settings" routerLinkActive="active" class="nav-link settings">Settings</a></li>
+            </ul>
+        </div>
+        
+        <div class="user-profile">
+            <div class="profile-avatar">JG</div>
+            <div class="profile-info">
+                <h4>HR-Admin</h4>
+                <p>jewro@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- SCENARIO
+ 
+1. Create component (ng g c your-component-name)
+2. Import the component to app.route.ts and then add the path to the routes array: { path: 'your-path', component: YourComponent }
+3. In the component TypeScript file, make sure to include the constructor with the Router dependency: "constructor(private router: Router) {}"
+
+Note: sa sidebar component and app ts lang may router outlet. Add mo lang lagi sa children yung components mo.
+
+
+-->

@@ -1,1 +1,236 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* XENTRA DESIGN SYSTEM */
+:root {
+  /* font families */
+  --font-header: "Source Sans 3", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --font-family-header: var(--font-header);
+  --font-family-body: var(--font-body);
+
+  /* GREEN */
+  --color-green-50:  oklch(97.41% 0.015 136.08);
+  --color-green-100: oklch(92.21% 0.048 134.74);
+  --color-green-200: oklch(88.63% 0.073 135.26);
+  --color-green-300: oklch(83.49% 0.106 135.70);
+  --color-green-400: oklch(80.22% 0.126 136.02);
+  --color-green-500: oklch(0.76 0.14 135);
+  --color-green-600: oklch(0.70 0.13 135);
+  --color-green-700: oklch(0.56 0.11 135);
+  --color-green-800: oklch(0.44 0.09 135);
+  --color-green-900: oklch(0.34 0.07 135);
+
+  --green-50:  var(--color-green-50);
+  --green-100: var(--color-green-100);
+  --green-200: var(--color-green-200);
+  --green-300: var(--color-green-300);
+  --green-400: var(--color-green-400);
+  --green-500: var(--color-green-500);
+  --green-600: var(--color-green-600);  
+  --green-700: var(--color-green-700);
+  --green-800: var(--color-green-800);
+  --green-900: var(--color-green-900);
+ 
+  /* BLUE */
+  --color-blue-50:  oklch(95.96% 0.014 224.49);
+  --color-blue-100: oklch(87.36% 0.046 228.88);
+  --color-blue-200: oklch(81.31% 0.068 228.83);
+  --color-blue-300: oklch(73.08% 0.095 230.88);
+  --color-blue-400: oklch(68.38% 0.111 232.00);
+  --color-blue-500: oklch(0.68 0.14 240);
+  --color-blue-600: oklch(0.62 0.13 240);
+  --color-blue-700: oklch(0.50 0.11 240);
+  --color-blue-800: oklch(0.38 0.09 240);
+  --color-blue-900: oklch(0.30 0.07 240);
+
+  --blue-50:  var(--color-blue-50);
+  --blue-100: var(--color-blue-100);
+  --blue-200: var(--color-blue-200);
+  --blue-300: var(--color-blue-300);  
+  --blue-400: var(--color-blue-400);
+  --blue-500: var(--color-blue-500);
+  --blue-600: var(--color-blue-600);  
+  --blue-700: var(--color-blue-700);
+  --blue-800: var(--color-blue-800);
+  --blue-900: var(--color-blue-900);
+ 
+  /* PURPLE */
+  --color-purple-50:  oklch(96.82% 0.009 308.36);
+  --color-purple-100: oklch(90.05% 0.025 309.35);
+  --color-purple-200: oklch(85.18% 0.037 310.44);
+  --color-purple-300: oklch(78.26% 0.055 310.02);
+  --color-purple-400: oklch(74.02% 0.066 308.97);
+  --color-purple-500: oklch(0.68 0.11 300);
+  --color-purple-600: oklch(0.62 0.10 300);
+  --color-purple-700: oklch(0.50 0.08 300);
+  --color-purple-800: oklch(0.40 0.07 300);
+  --color-purple-900: oklch(0.32 0.06 300);
+
+  --purple-50:  var(--color-purple-50);
+  --purple-100: var(--color-purple-100);    
+  --purple-200: var(--color-purple-200);
+  --purple-300: var(--color-purple-300);  
+  --purple-400: var(--color-purple-400);
+  --purple-500: var(--color-purple-500);
+  --purple-600: var(--color-purple-600);
+  --purple-700: var(--color-purple-700);
+  --purple-800: var(--color-purple-800);
+  --purple-900: var(--color-purple-900);
+ 
+  /* ORANGE */
+  --color-orange-50:  oklch(97.94% 0.013 71.33);
+  --color-orange-100: oklch(93.88% 0.043 72.91);
+  --color-orange-200: oklch(90.27% 0.061 67.71);
+  --color-orange-300: oklch(86.82% 0.091 70.97);
+  --color-orange-400: oklch(84.48% 0.107 70.43);
+  --color-orange-500: oklch(0.78 0.14 75);
+  --color-orange-600: oklch(0.72 0.13 75);
+  --color-orange-700: oklch(0.62 0.12 75);
+  --color-orange-800: oklch(0.50 0.10 75);
+  --color-orange-900: oklch(0.40 0.08 75);
+
+  --orange-50:  var(--color-orange-50);
+  --orange-100: var(--color-orange-100);    
+  --orange-200: var(--color-orange-200);
+  --orange-300: var(--color-orange-300);  
+  --orange-400: var(--color-orange-400);
+  --orange-500: var(--color-orange-500);
+  --orange-600: var(--color-orange-600);
+  --orange-700: var(--color-orange-700);
+  --orange-800: var(--color-orange-800);
+  --orange-900: var(--color-orange-900);
+
+  /* SHADE */
+  --black-50:  oklch(0.93 0.01 20);
+  --black-100: oklch(0.78 0.01 20);
+  --black-200: oklch(0.66 0.01 20);
+  --black-300: oklch(0.47 0.01 20);
+  --black-400: oklch(0.36 0.01 20);
+  --black-500: oklch(0.18 0.02 20);
+  --black-600: oklch(0.16 0.02 20);
+  --black-700: oklch(0.13 0.02 20);
+  --black-800: oklch(0.10 0.02 20);
+  --black-900: oklch(0.08 0.02 20);
+
+  --color-black-50: var(--black-50);
+  --color-black-100: var(--black-100);
+  --color-black-200: var(--black-200);
+  --color-black-300: var(--black-300);
+  --color-black-400: var(--black-400);
+  --color-black-500: var(--black-500);
+  --color-black-600: var(--black-600);
+  --color-black-700: var(--black-700);
+  --color-black-800: var(--black-800);
+  --color-black-900: var(--black-900);
+
+  /* Border Radius */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  --radius-none: var(--radius-none);
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-full: var(--radius-full);
+
+  /* Shadows */
+  --shadow-none: none;
+  --shadow-2xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.10);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.14);
+  --shadow-xl: 0 12px 24px rgba(0,0,0,0.16);
+  --shadow-2xl: 0 24px 48px rgba(0,0,0,0.20);
+
+  --inset-shadow-2xs: inset 0 1px 2px rgba(0,0,0,0.06);
+  --inset-shadow-xs: inset 0 1px 3px rgba(0,0,0,0.08);
+  --inset-shadow-sm: inset 0 2px 4px rgba(0,0,0,0.10);
+
+  --shadow-none: var(--shadow-none);
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --inset-shadow-2xs: var(--inset-shadow-2xs);
+  --inset-shadow-xs: var(--inset-shadow-xs);
+  --inset-shadow-sm: var(--inset-shadow-sm);
+
+  /* Font Weight */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  --font-weight-thin: var(--font-thin);
+  --font-weight-extralight: var(--font-extralight);
+  --font-weight-light: var(--font-light);
+  --font-weight-normal: var(--font-normal);
+  --font-weight-medium: var(--font-medium);
+  --font-weight-semibold: var(--font-semibold);
+  --font-weight-bold: var(--font-bold);
+  --font-weight-extrabold: var(--font-extrabold);
+  --font-weight-black: var(--font-black);
+
+  /* Font Size */
+  --text-xs: 0.75rem;
+  --text-xs-leading: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm-leading: 1.25rem;
+  --text-base: 1rem;
+  --text-base-leading: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg-leading: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl-leading: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl-leading: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl-leading: 2.25rem;
+  --text-4xl: 2.25rem;
+  --text-4xl-leading: 2.5rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
+
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+  --font-size-3xl: var(--text-3xl);
+  --font-size-4xl: var(--text-4xl);
+  --font-size-5xl: var(--text-5xl);
+  --font-size-6xl: var(--text-6xl);
+  --font-size-7xl: var(--text-7xl);
+  --font-size-8xl: var(--text-8xl);
+  --font-size-9xl: var(--text-9xl);
+}
