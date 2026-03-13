@@ -44,13 +44,33 @@
     height: auto;
 }
 
-.nav-menu {
+/* Sidebar Navigation Container */
+.sidebar-nav {
     flex: 1;
-    padding: 24px 16px;
+    padding: 16px 8px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.nav-menu ul {
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-section-title {
+    padding: 0 16px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+.nav-menu {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -58,117 +78,12 @@
 
 .nav-menu li {
     margin: 4px 0;
+    list-style: none;
 }
 
-
-.nav-menu a::before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: inline-block;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-    filter: brightness(0) saturate(100%) invert(45%) sepia(15%) saturate(445%) hue-rotate(212deg) brightness(97%) contrast(85%);
-}
-
-.nav-menu a {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
-    border-radius: 16px;
-    transition: all 0.2s ease;
-    letter-spacing: 0.3px;
-    border: 1px solid transparent;
-}
-
-/* Hover Effects - Primary Color Border and Text */
-.nav-menu li:hover a {
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    background-color: transparent;
-}
-
-.nav-menu li:hover a::before {
-    filter: brightness(0) saturate(100%) invert(39%) sepia(69%) saturate(439%) hue-rotate(82deg) brightness(90%) contrast(92%);
-}
-
-/* Active State - Green Background with White Text */
-.nav-menu a.active {
-    background-color: var(--primary-color);
-    color: white;
-    border: 1px solid transparent;
-    font-weight: 600;
-}
-
-.nav-menu a.active::before {
-    filter: brightness(0) invert(1);
-}
-
-/* Dashboard Icon */
-.nav-link.dashboard::before {
-    background-image: url('/dashboard-line.svg');
-}
-
-/* Employees Icon */
-.nav-link.employees::before {
-    background-image: url('/group-line.svg');
-}
-
-/* Projects Icon */
-.nav-link.projects::before {
-    background-image: url('/folder-chart-line.svg');
-}
-
-/* Request Icon */
-.nav-link.request::before {
-    background-image: url('/article-line.svg');
-}
-
-/* Onboarding Icon */
-.nav-link.onboarding::before {
-    background-image: url('/user-add-line.svg');
-}
-
-/* Performance Icon */
-.nav-link.performance::before {
-    background-image: url('/focus-2-line.svg');
-}
-
-/* Reports Icon */
-.nav-link.reports::before {
-    background-image: url('/line-chart-fill.svg');
-}
-
-/* Notifications Icon */
-.nav-link.notifications::before {
-    background-image: url('/notification-3-line.svg');
-}
-
-/* Settings Icon */
-.nav-link.settings::before {
-    background-image: url('/settings-2-line.svg');
-}
-
-/* Badge Styles */
-.badge {
-    background-color: var(--secondary-color);
-    color: white;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin-left: auto;
-    min-width: 18px;
-    text-align: center;
-    transition: all 0.2s ease;
+/* Sidebar Item Component Styles */
+.nav-menu app-sidebar-item {
+    display: block;
 }
 
 /* User Profile Section */
@@ -223,8 +138,32 @@
     min-height: 100vh;
 }
 
-.nav-menu::-webkit-scrollbar {
+.sidebar-nav::-webkit-scrollbar {
     width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+    background: var(--bg-hover);
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav-menu app-sidebar-item {
+    animation: slideIn 0.3s ease-out;
 }
 
 .nav-menu::-webkit-scrollbar-track {

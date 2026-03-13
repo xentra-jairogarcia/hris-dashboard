@@ -4,19 +4,20 @@
             <img src="xentra.png" alt="Xentra Logo" class="logo">
         </div>
         
-        <div class="nav-menu">
-            <ul>
-                <li><a routerLink="/dashboard" routerLinkActive="active" class="nav-link dashboard">Dashboard</a></li>
-                <li><a routerLink="/employees" routerLinkActive="active" class="nav-link employees">Employees</a></li>
-                <li><a routerLink="/projects" routerLinkActive="active" class="nav-link projects">Projects</a></li>
-                <li><a routerLink="/request" routerLinkActive="active" class="nav-link request">Request</a></li>
-                <li><a routerLink="/onboarding" routerLinkActive="active" class="nav-link onboarding">Onboarding</a></li>
-                <li><a routerLink="/performance" routerLinkActive="active" class="nav-link performance">Performance</a></li>
-                <li><a routerLink="/reports" routerLinkActive="active" class="nav-link reports">Reports</a></li>
-                <li><a routerLink="/notifications" routerLinkActive="active" class="nav-link notifications">Notifications<span class="badge">3</span></a></li>
-                <li><a routerLink="/settings" routerLinkActive="active" class="nav-link settings">Settings</a></li>
-            </ul>
-        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <ul class="nav-menu">
+                    <li *ngFor="let item of menuItems">
+                        <app-sidebar-item
+                            [label]="item.label"
+                            [icon]="item.icon"
+                            [route]="item.route"
+                            [badge]="item.badge"
+                        ></app-sidebar-item>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         
         <div class="user-profile">
             <div class="profile-avatar">JG</div>

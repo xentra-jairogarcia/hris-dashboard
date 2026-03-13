@@ -1,0 +1,5 @@
+<a [routerLink]="route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <span class="icon" [class]="'icon-' + icon"></span>
+    <span class="label">{{ label }}</span>
+    <span class="badge" *ngIf="badge">{{ badge }}</span>
+</a>
