@@ -4,6 +4,12 @@
     padding: 0;
 }
 
+body {
+    font-family: var(--font-family-body);
+    background: #f9fafb;
+    color: #333;
+}
+
 /* XENTRA DESIGN SYSTEM */
 :root {
   /* font families */
@@ -139,16 +145,6 @@
   --radius-3xl: 24px;
   --radius-full: 9999px;
 
-  --radius-none: var(--radius-none);
-  --radius-xs: var(--radius-xs);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-xl: var(--radius-xl);
-  --radius-2xl: var(--radius-2xl);
-  --radius-3xl: var(--radius-3xl);
-  --radius-full: var(--radius-full);
-
   /* Shadows */
   --shadow-none: none;
   --shadow-2xs: 0 1px 2px rgba(0,0,0,0.04);
@@ -162,19 +158,6 @@
   --inset-shadow-2xs: inset 0 1px 2px rgba(0,0,0,0.06);
   --inset-shadow-xs: inset 0 1px 3px rgba(0,0,0,0.08);
   --inset-shadow-sm: inset 0 2px 4px rgba(0,0,0,0.10);
-
-  --shadow-none: var(--shadow-none);
-  --shadow-2xs: var(--shadow-2xs);
-  --shadow-xs: var(--shadow-xs);
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
-  --shadow-xl: var(--shadow-xl);
-  --shadow-2xl: var(--shadow-2xl);
-
-  --inset-shadow-2xs: var(--inset-shadow-2xs);
-  --inset-shadow-xs: var(--inset-shadow-xs);
-  --inset-shadow-sm: var(--inset-shadow-sm);
 
   /* Font Weight */
   --font-thin: 100;
