@@ -1,1 +1,69 @@
-<p>employees works!</p>
+<div class="employees-page">
+    <!-- Header section -->
+    <header class="page-header">
+        <h1>Employees</h1>
+        <!-- optional extra header content, e.g., breadcrumbs -->
+    </header>
+
+    <!-- Stats and actions row -->
+    <div class="stats">
+        <div class="stats-actions-row">
+            <div class="total-employees">
+                <img src="/Employees.png" alt="" class="stats-icon">
+                <span class="total-label">Total Employee:</span>
+                <span class="total-number">67 Persons</span>
+            </div>
+    
+            <div class="search-and-filters">
+                <form action="/search_results" method="get" role="search">
+                    <label for="employee-search" class="visually-hidden">Search by name</label>
+                    <input type="search" id="employee-search" name="q" placeholder="Search by name">
+                </form>
+                <div class="btn">
+                    <button class="filter-btn" type="button">Filter</button>
+                    <button class="sort-btn" type="button">Sort</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Employee table -->
+        <table class="employees-table">
+            <thead>
+            <tr>
+                <th>EMPLOYEE ID</th>
+                <th>NAME</th>
+                <th>POSITION</th>
+                <th>LEVEL</th>
+                <th>STATUS</th>
+                <th>ACTION</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2020-34584</td>
+                <td>AC Aljo Cullamco</td>
+                <td>Front End Developer</td>
+                <td>Senior</td>
+                <td>Regular</td>
+                <td><a href="#">View Profile</a></td>
+            </tr>
+            <tr>
+                <td>2020-34524</td>
+                <td>AC Ralph Cruz</td>
+                <td>UI/UX Designer</td>
+                <td>Mid</td>
+                <td>Regular</td>
+                <td><a href="#">View Profile</a></td>
+            </tr>
+            <tr>
+                <td>2022-34544</td>
+                <td>AC Lorenz Fuentes</td>
+                <td>Front End Developer</td>
+                <td>Junior</td>
+                <td>Regular</td>
+                <td><a href="#">View Profile</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

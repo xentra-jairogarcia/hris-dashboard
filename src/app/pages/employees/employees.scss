@@ -1,0 +1,127 @@
+.employees-page {
+    padding: 32px;
+    font-family: 'Inter', sans-serif;
+    }
+
+.page-header h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: 32px;
+}
+
+    .stats {
+        border-radius: var(--radius-2xl);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        
+
+        .stats-actions-row {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .total-employees {
+            border-radius: var(--radius-2xl);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green-50);
+            font-size: 16px;
+        .total-number {
+            font-weight: 600;
+            color: var(--green-600);
+        }
+    }
+}
+    
+
+    .search-and-filters {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+    }
+
+    .search-and-filters form {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .search-and-filters form input{
+        width: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    /* Visually hidden class for screen‑readers only */
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0;
+    }
+
+    input[type="search"] {
+        padding: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 16px;
+        min-width: 240px;
+    }
+
+    .btn {
+        display: flex;
+        gap: 16px;
+    }
+
+    button {
+        padding: 16px 24px;
+        border: 1px solid var(--border-color);
+        background: white;
+        border-radius: var(--radius-md);
+        font-weight: 500;
+        cursor: pointer;
+        &:hover {
+            background: var(--bg-hover);
+        }
+    }
+
+    .employees-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+        
+    th {
+        text-align: left;
+        padding: 12px 16px;
+        background: #f9fafb;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    td {
+        padding: 16px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 14px;
+    }
+    
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        &:hover {
+        text-decoration: underline;
+        }
+    }
+}

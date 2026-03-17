@@ -3,11 +3,10 @@
     --primary-color: var(--green-600);
     --primary-light: var(--blue-400);
     --secondary-color: var(--orange-500);
-    --text-primary: #1e293b;
+    --text-primary: #var(--black-500);
     --text-secondary: var(--black-400);
     --bg-white: #ffffff;
     --bg-hover: #f8fafc;
-    --border-color: #e2e8f0;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
 }
 
@@ -116,10 +115,12 @@ th {
   text-align: left;
   font-size: 12px;
   color: #6b7280;
+  padding: 16px;
+  background-color: #fcfcfd;
 }
 
 td {
-  padding: 10px 0;
+  padding: 16px;
   border-top: 1px solid #eee;
   font-size: 14px;
 }
@@ -133,13 +134,13 @@ td {
 }
 
 .pending {
-  background: #ffe7c7;
-  color: #c76b00;
+  background:  var(--color-orange-500);
+  color: #ffff;
 }
 
 .approved {
-  background: #d7f5d7;
-  color: #0c7a0c;
+  background: var(--color-green-500);
+  color: #ffff;
 }
 
 /* Birthday */
@@ -151,41 +152,73 @@ td {
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #dbeafe;
+  background: var(--color-blue-100);
+  color: var(--color-blue-500);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
 }
 
+.celebrant-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  font-weight: var(--font-weight-bold);
+}
+
 .role {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 14px;
+  color: var(--black-300);
 }
 
 .date {
-  font-size: 13px;
-  color: #2563eb;
+  font-size: 14px;
+  color: var(--color-blue-500);
+  font-weight: var(--font-weight-bold);
 }
 
 /* Onboarding */
 
+.onboarding-h1 {
+  margin-bottom: 16px;
+}
+
 .onboard-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-top: 15px;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+}
+
+.start {
+  font-size: 14px;
+  color: var(--black-300);
 }
 
 .employee-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   flex: 1;
 }
 
 .progress-section {
   width: 200px;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: px;
 }
 
 .progress-bar {
@@ -202,6 +235,7 @@ td {
 }
 
 .percent {
-  font-size: 13px;
+  font-size: 16px;
   color: #555;
+  font-weight: var(--font-weight-bold);
 }
