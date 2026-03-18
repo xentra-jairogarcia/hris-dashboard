@@ -9,7 +9,7 @@
 }
 
     .stats {
-        border-radius: var(--radius-2xl);
+        border-radius: var(--radius-xl);
         border: 1px solid var(--border-color);
         box-shadow: var(--shadow-sm);
         
@@ -23,7 +23,7 @@
         }
 
         .total-employees {
-            border-radius: var(--radius-2xl);
+            border-radius: var(--radius-xl);
             padding: 16px 24px;
             display: flex;
             align-items: center;
@@ -98,7 +98,7 @@
         width: 100%;
         border-collapse: collapse;
         background: white;
-        border-radius: var(--radius-2xl);
+        border-radius: var(--radius-xl);
         overflow: hidden;
         
     th {

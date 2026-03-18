@@ -3,6 +3,7 @@ import { MainLayout } from './core/layouts/main-layout/main-layout';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Employees } from './pages/employees/employees';
 import { Projects } from './pages/projects/projects';
+import { Request } from './pages/request/request';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: Dashboard },
       { path: 'employees', component: Employees },
       { path: 'projects', component: Projects },
+      { path: 'request', component: Request },
     ]
   }
 ];
