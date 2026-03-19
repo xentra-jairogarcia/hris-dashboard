@@ -4,6 +4,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Employees } from './pages/employees/employees';
 import { Projects } from './pages/projects/projects';
 import { Request } from './pages/request/request';
+import { Onboarding } from './pages/onboarding/onboarding';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,7 @@ export const routes: Routes = [
       { path: 'employees', component: Employees },
       { path: 'projects', component: Projects },
       { path: 'request', component: Request },
+      { path: 'onboarding', component: Onboarding },
     ]
   }
 ];
