@@ -1,8 +1,33 @@
+@if (!selectedEmployee) {
 <div class="employees-page">
     <!-- Header section -->
     <header class="page-header">
         <h1>Employees</h1>
-        <!-- optional extra header content, e.g., breadcrumbs -->
+        <div class="view-toggle">
+            <button
+                class="toggle-btn"
+                [class.active]="viewMode === 'list'"
+                (click)="viewMode = 'list'"
+                title="List View">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <rect x="2" y="3" width="16" height="2" rx="1"/>
+                    <rect x="2" y="9" width="16" height="2" rx="1"/>
+                    <rect x="2" y="15" width="16" height="2" rx="1"/>
+                </svg>
+            </button>
+            <button
+                class="toggle-btn"
+                [class.active]="viewMode === 'card'"
+                (click)="viewMode = 'card'"
+                title="Card View">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <rect x="1" y="1" width="7" height="7" rx="1.5"/>
+                    <rect x="12" y="1" width="7" height="7" rx="1.5"/>
+                    <rect x="1" y="12" width="7" height="7" rx="1.5"/>
+                    <rect x="12" y="12" width="7" height="7" rx="1.5"/>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <!-- Stats and actions row -->
@@ -11,9 +36,9 @@
             <div class="total-employees">
                 <img src="/Employees.png" alt="" class="stats-icon">
                 <span class="total-label">Total Employee:</span>
-                <span class="total-number">67 Persons</span>
+                <span class="total-number">{{ employees.length }} Persons</span>
             </div>
-    
+
             <div class="search-and-filters">
                 <form action="/search_results" method="get" role="search">
                     <label for="employee-search" class="visually-hidden">Search by name</label>
@@ -25,8 +50,9 @@
                 </div>
             </div>
         </div>
-    
-        <!-- Employee table -->
+
+        <!-- Table View -->
+        @if (viewMode === 'list') {
         <table class="employees-table">
             <thead>
             <tr>
@@ -39,31 +65,127 @@
             </tr>
             </thead>
             <tbody>
+            @for (emp of employees; track emp.id) {
             <tr>
-                <td>2020-34584</td>
-                <td>AC Aljo Cullamco</td>
-                <td>Front End Developer</td>
-                <td>Senior</td>
-                <td>Regular</td>
-                <td><a href="#">View Profile</a></td>
+                <td>{{ emp.id }}</td>
+                <td>
+                    <div class="table-name">
+                        <span class="table-avatar">{{ emp.initials }}</span>
+                        {{ emp.name }}
+                    </div>
+                </td>
+                <td>{{ emp.position }}</td>
+                <td>{{ emp.level }}</td>
+                <td>{{ emp.status }}</td>
+                <td><a (click)="viewProfile(emp)" class="view-link">View Profile</a></td>
             </tr>
-            <tr>
-                <td>2020-34524</td>
-                <td>AC Ralph Cruz</td>
-                <td>UI/UX Designer</td>
-                <td>Mid</td>
-                <td>Regular</td>
-                <td><a href="#">View Profile</a></td>
-            </tr>
-            <tr>
-                <td>2022-34544</td>
-                <td>AC Lorenz Fuentes</td>
-                <td>Front End Developer</td>
-                <td>Junior</td>
-                <td>Regular</td>
-                <td><a href="#">View Profile</a></td>
-            </tr>
+            }
             </tbody>
         </table>
+        }
+
+        <!-- Card View -->
+        @if (viewMode === 'card') {
+        <div class="cards-grid">
+            @for (emp of employees; track emp.id) {
+            <div class="employee-card">
+                <div class="card-avatar">{{ emp.initials }}</div>
+                <h4 class="card-name">{{ emp.name }}</h4>
+                <p class="card-position">{{ emp.position }}</p>
+                <p class="card-id">{{ emp.id }}</p>
+                <div class="card-badges">
+                    <span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span>
+                    <span class="badge" [ngClass]="getLevelClass(emp.level)">{{ emp.level }}</span>
+                </div>
+                <button class="view-profile-btn" (click)="viewProfile(emp)">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="8" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                        <path d="M3.5 13.5C4 11 5.8 9.5 8 9.5s4 1.5 4.5 4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                    View Profile
+                </button>
+            </div>
+            }
+        </div>
+        }
     </div>
 </div>
+}
+
+<!-- Employee Profile View -->
+@if (selectedEmployee) {
+<div class="employee-profile">
+    <header class="profile-header">
+        <h1>Employee Profile</h1>
+        <button class="back-btn" (click)="closeProfile()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+    </header>
+
+    <div class="profile-card">
+        <div class="profile-top">
+            <div class="profile-info">
+                <div class="profile-avatar">{{ selectedEmployee.initials }}</div>
+                <div class="profile-details">
+                    <h2>{{ selectedEmployee.name }}</h2>
+                    <p class="profile-position">{{ selectedEmployee.position }}</p>
+                    <span class="badge" [ngClass]="getStatusClass(selectedEmployee.status)">{{ selectedEmployee.status }}</span>
+                    <p class="profile-id">{{ selectedEmployee.id }}</p>
+                </div>
+            </div>
+            <button class="promote-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 1l2 4 4.5.7-3.3 3.1.8 4.5L8 11.2 3.9 13.3l.8-4.5L1.5 5.7 6 5z"/>
+                </svg>
+                Promote
+            </button>
+        </div>
+    </div>
+
+    <div class="profile-tabs-card">
+        <div class="profile-tabs">
+            <button class="tab active">Personal Information</button>
+            <button class="tab">Employment Details</button>
+            <button class="tab">Documents</button>
+            <button class="tab">Project Assignments</button>
+            <button class="tab">Skillset</button>
+        </div>
+
+        <div class="profile-content">
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Full Name</label>
+                    <p>{{ selectedEmployee.name }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Email</label>
+                    <p>{{ selectedEmployee.email }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Contact Number</label>
+                    <p>{{ selectedEmployee.contact }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Birthdate</label>
+                    <p>{{ selectedEmployee.birthdate }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Gender</label>
+                    <p>{{ selectedEmployee.gender }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Emergency Contact</label>
+                    <p>{{ selectedEmployee.emergencyContact }}</p>
+                </div>
+                <div class="info-item">
+                    <label>Address</label>
+                    <p>{{ selectedEmployee.address }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

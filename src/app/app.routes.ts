@@ -6,6 +6,7 @@ import { Projects } from './pages/projects/projects';
 import { Request } from './pages/request/request';
 import { Performance } from './pages/performance/performance';
 import { Notifications } from './pages/notifications/notifications';
+import { Settings } from './pages/settings/settings';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,7 @@ export const routes: Routes = [
       { path: 'request', component: Request },
       { path: 'performance', component: Performance },
       { path: 'notifications', component: Notifications },
+      { path: 'settings', component: Settings },
     ]
   }
 ];
