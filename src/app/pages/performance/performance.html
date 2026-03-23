@@ -5,9 +5,9 @@
         <h1>Performance Reviews</h1>
 
         <div class="performance-tabs-top">
-        <button class="top-tab active">Performance</button>
-        <button class="top-tab">Career</button>
-        <button class="top-tab">Assets</button>
+        <app-pill-tab-button label="Performance" [active]="true"></app-pill-tab-button>
+        <app-pill-tab-button label="Career" [active]="false"></app-pill-tab-button>
+        <app-pill-tab-button label="Assets" [active]="false"></app-pill-tab-button>
         </div>
     </div>
 
@@ -16,9 +16,9 @@
 
         <!-- Tabs -->
         <div class="performance-tabs">
-        <button class="tab">Active</button>
-        <button class="tab">Completed</button>
-        <button class="tab active">Draft</button>
+        <app-tab-button label="Active" [active]="false"></app-tab-button>
+        <app-tab-button label="Completed" [active]="false"></app-tab-button>
+        <app-tab-button label="Draft" [active]="true"></app-tab-button>
         </div>
 
         <!-- Table -->
@@ -46,13 +46,7 @@
             <td>2026-01-15</td>
             <td><span class="badge draft">Draft</span></td>
             <td class="actions">
-                <a>
-                <svg class="icon-eye" viewBox="0 0 24 24">
-                    <path d="M1 12s4-6 11-6 11 6 11 6-4 6-11 6S1 12 1 12z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                View Details
-                </a>
+                <app-view-details-link label="View Details"></app-view-details-link>
             </td>
             </tr>
 
@@ -65,13 +59,7 @@
             <td>2026-01-14</td>
             <td><span class="badge draft">Draft</span></td>
             <td class="actions">
-                <a>
-                <svg class="icon-eye" viewBox="0 0 24 24">
-                    <path d="M1 12s4-6 11-6 11 6 11 6-4 6-11 6S1 12 1 12z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                View Details
-                </a>
+                <app-view-details-link label="View Details"></app-view-details-link>
             </td>
             </tr>
         </tbody>

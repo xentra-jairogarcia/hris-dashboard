@@ -1,0 +1,14 @@
+.text-link-btn {
+    background: none;
+    border: none;
+    color: var(--color-blue-600);
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0;
+    transition: color 0.15s;
+
+    &:hover {
+        color: var(--color-blue-700);
+    }
+}

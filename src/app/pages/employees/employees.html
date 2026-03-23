@@ -4,29 +4,18 @@
     <header class="page-header">
         <h1>Employees</h1>
         <div class="view-toggle">
-            <button
-                class="toggle-btn"
-                [class.active]="viewMode === 'list'"
-                (click)="viewMode = 'list'"
-                title="List View">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <rect x="2" y="3" width="16" height="2" rx="1"/>
-                    <rect x="2" y="9" width="16" height="2" rx="1"/>
-                    <rect x="2" y="15" width="16" height="2" rx="1"/>
-                </svg>
-            </button>
-            <button
-                class="toggle-btn"
-                [class.active]="viewMode === 'card'"
-                (click)="viewMode = 'card'"
-                title="Card View">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <rect x="1" y="1" width="7" height="7" rx="1.5"/>
-                    <rect x="12" y="1" width="7" height="7" rx="1.5"/>
-                    <rect x="1" y="12" width="7" height="7" rx="1.5"/>
-                    <rect x="12" y="12" width="7" height="7" rx="1.5"/>
-                </svg>
-            </button>
+            <app-toggle-button
+                icon="list"
+                [active]="viewMode === 'list'"
+                title="List View"
+                (toggled)="viewMode = 'list'">
+            </app-toggle-button>
+            <app-toggle-button
+                icon="card"
+                [active]="viewMode === 'card'"
+                title="Card View"
+                (toggled)="viewMode = 'card'">
+            </app-toggle-button>
         </div>
     </header>
 
@@ -45,8 +34,8 @@
                     <input type="search" id="employee-search" name="q" placeholder="Search by name">
                 </form>
                 <div class="btn">
-                    <button class="filter-btn" type="button">Filter</button>
-                    <button class="sort-btn" type="button">Sort</button>
+                    <app-filter-sort-button label="Filter" variant="outline"></app-filter-sort-button>
+                    <app-filter-sort-button label="Sort" variant="filled"></app-filter-sort-button>
                 </div>
             </div>
         </div>
@@ -77,7 +66,7 @@
                 <td>{{ emp.position }}</td>
                 <td>{{ emp.level }}</td>
                 <td>{{ emp.status }}</td>
-                <td><a (click)="viewProfile(emp)" class="view-link">View Profile</a></td>
+                <td><app-text-link-button label="View Profile" (clicked)="viewProfile(emp)"></app-text-link-button></td>
             </tr>
             }
             </tbody>
@@ -97,14 +86,12 @@
                     <span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span>
                     <span class="badge" [ngClass]="getLevelClass(emp.level)">{{ emp.level }}</span>
                 </div>
-                <button class="view-profile-btn" (click)="viewProfile(emp)">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                        <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        <circle cx="8" cy="6" r="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                        <path d="M3.5 13.5C4 11 5.8 9.5 8 9.5s4 1.5 4.5 4" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                    </svg>
-                    View Profile
-                </button>
+                <app-action-button
+                    label="View Profile"
+                    variant="blue"
+                    size="medium"
+                    (clicked)="viewProfile(emp)">
+                </app-action-button>
             </div>
             }
         </div>
@@ -118,11 +105,7 @@
 <div class="employee-profile">
     <header class="profile-header">
         <h1>Employee Profile</h1>
-        <button class="back-btn" (click)="closeProfile()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-        </button>
+        <app-icon-button icon="back" title="Go Back" (clicked)="closeProfile()"></app-icon-button>
     </header>
 
     <div class="profile-card">
@@ -136,22 +119,17 @@
                     <p class="profile-id">{{ selectedEmployee.id }}</p>
                 </div>
             </div>
-            <button class="promote-btn">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 1l2 4 4.5.7-3.3 3.1.8 4.5L8 11.2 3.9 13.3l.8-4.5L1.5 5.7 6 5z"/>
-                </svg>
-                Promote
-            </button>
+            <app-action-button label="Promote" variant="blue" size="medium" icon="star"></app-action-button>
         </div>
     </div>
 
     <div class="profile-tabs-card">
         <div class="profile-tabs">
-            <button class="tab active">Personal Information</button>
-            <button class="tab">Employment Details</button>
-            <button class="tab">Documents</button>
-            <button class="tab">Project Assignments</button>
-            <button class="tab">Skillset</button>
+            <app-tab-button label="Personal Information" [active]="true"></app-tab-button>
+            <app-tab-button label="Employment Details" [active]="false"></app-tab-button>
+            <app-tab-button label="Documents" [active]="false"></app-tab-button>
+            <app-tab-button label="Project Assignments" [active]="false"></app-tab-button>
+            <app-tab-button label="Skillset" [active]="false"></app-tab-button>
         </div>
 
         <div class="profile-content">

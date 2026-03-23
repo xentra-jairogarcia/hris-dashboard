@@ -1,0 +1,18 @@
+.toggle-btn {
+    padding: 8px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black-500);
+    transition: background 0.15s, color 0.15s;
+
+    &.active {
+        background: var(--color-green-50);
+        color: var(--color-green-500);
+        border-radius: var(--radius-lg);
+    }
+}

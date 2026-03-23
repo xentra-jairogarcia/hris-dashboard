@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ToggleButtonComponent } from '../../shared/components/toggle-button/toggle-button.component';
+import { FilterSortButtonComponent } from '../../shared/components/filter-sort-button/filter-sort-button.component';
+import { ActionButtonComponent } from '../../shared/components/action-button/action-button.component';
+import { IconButtonComponent } from '../../shared/components/icon-button/icon-button.component';
+import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
+import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
 
 interface Employee {
   id: string;
@@ -18,7 +24,15 @@ interface Employee {
 
 @Component({
   selector: 'app-employees',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ToggleButtonComponent,
+    FilterSortButtonComponent,
+    ActionButtonComponent,
+    IconButtonComponent,
+    TabButtonComponent,
+    TextLinkButtonComponent,
+  ],
   templateUrl: './employees.html',
   styleUrl: './employees.scss',
 })
@@ -96,6 +110,62 @@ export class Employees {
       gender: 'Male',
       emergencyContact: 'Elena Reyes',
       address: 'Taguig, Metro Manila',
+    },
+    {
+      id: '2022-423942',
+      name: 'Angela Deo',
+      initials: 'AD',
+      position: 'QA Engineer',
+      level: 'Junior',
+      status: 'Regular',
+      email: 'angela.deo@gmail.com',
+      contact: '09987654321',
+      birthdate: '11-30-2001',
+      gender: 'Female',
+      emergencyContact: 'Roberto Deo',
+      address: 'Mandaluyong, Metro Manila',
+    },
+    {
+      id: '2022-423942',
+      name: 'Angela Deo',
+      initials: 'AD',
+      position: 'QA Engineer',
+      level: 'Junior',
+      status: 'Regular',
+      email: 'angela.deo@gmail.com',
+      contact: '09987654321',
+      birthdate: '11-30-2001',
+      gender: 'Female',
+      emergencyContact: 'Roberto Deo',
+      address: 'Mandaluyong, Metro Manila',
+    },
+    {
+      id: '2022-423942',
+      name: 'Angela Deo',
+      initials: 'AD',
+      position: 'QA Engineer',
+      level: 'Junior',
+      status: 'Regular',
+      email: 'angela.deo@gmail.com',
+      contact: '09987654321',
+      birthdate: '11-30-2001',
+      gender: 'Female',
+      emergencyContact: 'Roberto Deo',
+      address: 'Mandaluyong, Metro Manila',
+    },
+    {
+      id: '2022-423942',
+      name: 'Angela Deo',
+      initials: 'AD',
+      position: 'QA Engineer',
+      level: 'Junior',
+      status: 'Regular',
+      email: 'angela.deo@gmail.com',
+      contact: '09987654321',
+      birthdate: '11-30-2001',
+      gender: 'Female',
+      emergencyContact: 'Roberto Deo',
+      address: 'Mandaluyong, Metro Manila',
     },
     {
       id: '2022-423942',

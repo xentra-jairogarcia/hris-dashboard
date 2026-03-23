@@ -4,13 +4,7 @@
     <div class="settings-card">
         <!-- Profile Tab -->
         <div class="settings-tabs">
-            <button class="tab active">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <circle cx="8" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
-                    <path d="M2.5 14.5C3 11.5 5.2 9.5 8 9.5s5 2 5.5 5" fill="none" stroke="currentColor" stroke-width="1.4"/>
-                </svg>
-                Profile
-            </button>
+            <app-tab-button label="Profile" [active]="true"></app-tab-button>
         </div>
 
         <!-- Personal Information -->
@@ -20,7 +14,7 @@
             <div class="avatar-section">
                 <div class="avatar">{{ profile.initials }}</div>
                 <div class="avatar-actions">
-                    <button class="change-photo-btn">Change Photo</button>
+                    <app-action-button label="Change Photo" variant="primary" size="small"></app-action-button>
                     <span class="photo-hint">JPG or PNG</span>
                 </div>
             </div>
@@ -58,15 +52,8 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="save-btn">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12.5 14H3.5a1 1 0 01-1-1V3a1 1 0 011-1h7l3 3v8a1 1 0 01-1 1z"/>
-                            <path d="M11.5 14V9.5h-7V14"/>
-                            <path d="M4.5 2v3h5"/>
-                        </svg>
-                        Save Changes
-                    </button>
-                    <button type="button" class="cancel-btn" (click)="cancel()">Cancel</button>
+                    <app-action-button label="Save Changes" variant="primary" size="small" icon="save" type="submit"></app-action-button>
+                    <app-action-button label="Cancel" variant="secondary" size="medium" (clicked)="cancel()"></app-action-button>
                 </div>
             </form>
         </div>

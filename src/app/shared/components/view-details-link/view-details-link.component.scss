@@ -1,0 +1,20 @@
+.view-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-blue-600);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.15s;
+
+    &:hover {
+        color: var(--color-blue-700);
+    }
+
+    .eye-icon {
+        width: 20px;
+        height: 20px;
+    }
+}

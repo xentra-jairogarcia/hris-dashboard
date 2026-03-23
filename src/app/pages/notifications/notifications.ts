@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
 
 @Component({
   selector: 'app-notifications',
-  imports: [],
+  imports: [TextLinkButtonComponent],
   templateUrl: './notifications.html',
   styleUrl: './notifications.scss',
 })
