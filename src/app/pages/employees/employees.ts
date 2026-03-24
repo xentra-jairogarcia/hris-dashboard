@@ -7,6 +7,25 @@ import { IconButtonComponent } from '../../shared/components/icon-button/icon-bu
 import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
 import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
 
+interface Document {
+  name: string;
+  status: string;
+}
+
+interface Project {
+  name: string;
+  type: string;
+  supervisor: string;
+  startDate: string;
+  badge: string;
+}
+
+interface Skill {
+  name: string;
+  experience: string;
+  level: string;
+}
+
 interface Employee {
   id: string;
   name: string;
@@ -20,6 +39,13 @@ interface Employee {
   gender: string;
   emergencyContact: string;
   address: string;
+  department: string;
+  dateHired: string;
+  originalHireDate: string;
+  supervisor: string;
+  documents: Document[];
+  projects: Project[];
+  skills: Skill[];
 }
 
 @Component({
@@ -39,6 +65,24 @@ interface Employee {
 export class Employees {
   viewMode: 'list' | 'card' = 'card';
   selectedEmployee: Employee | null = null;
+  activeTab: 'personal' | 'employment' | 'documents' | 'projects' | 'skillset' = 'personal';
+
+  private defaultDocs: Document[] = [
+    { name: 'National ID', status: 'Uploaded' },
+    { name: 'Employment Contract', status: 'Uploaded' },
+    { name: 'Medical Certificate', status: 'Uploaded' },
+  ];
+
+  private defaultProjects: Project[] = [
+    { name: 'Project 1', type: 'Primary', supervisor: 'Paul Diwa', startDate: '10-5-2025', badge: 'Primary' },
+    { name: 'Project 1', type: 'Primary', supervisor: 'Primary', startDate: '10-5-2025', badge: 'Side' },
+  ];
+
+  private defaultSkills: Skill[] = [
+    { name: 'Next.js', experience: '4 years Experience', level: 'Expert' },
+    { name: 'Node.js', experience: '3 years experience', level: 'Intermediate' },
+    { name: 'Python', experience: '6 years experience', level: 'Advanced' },
+  ];
 
   employees: Employee[] = [
     {
@@ -54,6 +98,13 @@ export class Employees {
       gender: 'Male',
       emergencyContact: 'Jane Cullamco',
       address: 'Guiguinto, Bulacan',
+      department: 'Software Dev',
+      dateHired: '03-24-2022',
+      originalHireDate: '03-23-2020',
+      supervisor: 'Lorenz Fuentez',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2020-34584',
@@ -68,6 +119,13 @@ export class Employees {
       gender: 'Male',
       emergencyContact: 'Maria Cruz',
       address: 'Makati, Metro Manila',
+      department: 'Design',
+      dateHired: '06-15-2020',
+      originalHireDate: '06-15-2020',
+      supervisor: 'Paul Diwa',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2020-34584',
@@ -82,6 +140,13 @@ export class Employees {
       gender: 'Male',
       emergencyContact: 'Ana Fuentes',
       address: 'Quezon City, Metro Manila',
+      department: 'Software Dev',
+      dateHired: '01-10-2021',
+      originalHireDate: '01-10-2021',
+      supervisor: 'Aljo Cullamco',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -96,6 +161,13 @@ export class Employees {
       gender: 'Female',
       emergencyContact: 'Jose Santos',
       address: 'Pasig, Metro Manila',
+      department: 'Software Dev',
+      dateHired: '03-24-2022',
+      originalHireDate: '03-22-2020',
+      supervisor: 'Lorenz Fuentez',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -110,6 +182,13 @@ export class Employees {
       gender: 'Male',
       emergencyContact: 'Elena Reyes',
       address: 'Taguig, Metro Manila',
+      department: 'Software Dev',
+      dateHired: '08-01-2022',
+      originalHireDate: '08-01-2022',
+      supervisor: 'Paul Diwa',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -124,6 +203,13 @@ export class Employees {
       gender: 'Female',
       emergencyContact: 'Roberto Deo',
       address: 'Mandaluyong, Metro Manila',
+      department: 'Quality Assurance',
+      dateHired: '05-15-2023',
+      originalHireDate: '05-15-2023',
+      supervisor: 'Maria Santos',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -138,6 +224,13 @@ export class Employees {
       gender: 'Female',
       emergencyContact: 'Roberto Deo',
       address: 'Mandaluyong, Metro Manila',
+      department: 'Quality Assurance',
+      dateHired: '05-15-2023',
+      originalHireDate: '05-15-2023',
+      supervisor: 'Maria Santos',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -152,6 +245,13 @@ export class Employees {
       gender: 'Female',
       emergencyContact: 'Roberto Deo',
       address: 'Mandaluyong, Metro Manila',
+      department: 'Quality Assurance',
+      dateHired: '05-15-2023',
+      originalHireDate: '05-15-2023',
+      supervisor: 'Maria Santos',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -166,6 +266,13 @@ export class Employees {
       gender: 'Female',
       emergencyContact: 'Roberto Deo',
       address: 'Mandaluyong, Metro Manila',
+      department: 'Quality Assurance',
+      dateHired: '05-15-2023',
+      originalHireDate: '05-15-2023',
+      supervisor: 'Maria Santos',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
     {
       id: '2022-423942',
@@ -180,11 +287,19 @@ export class Employees {
       gender: 'Female',
       emergencyContact: 'Roberto Deo',
       address: 'Mandaluyong, Metro Manila',
+      department: 'Quality Assurance',
+      dateHired: '05-15-2023',
+      originalHireDate: '05-15-2023',
+      supervisor: 'Maria Santos',
+      documents: this.defaultDocs,
+      projects: this.defaultProjects,
+      skills: this.defaultSkills,
     },
   ];
 
   viewProfile(employee: Employee): void {
     this.selectedEmployee = employee;
+    this.activeTab = 'personal';
   }
 
   closeProfile(): void {
@@ -197,5 +312,13 @@ export class Employees {
 
   getLevelClass(level: string): string {
     return level.toLowerCase();
+  }
+
+  getSkillLevelClass(level: string): string {
+    return level.toLowerCase();
+  }
+
+  getProjectBadgeClass(badge: string): string {
+    return badge.toLowerCase();
   }
 }
