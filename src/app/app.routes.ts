@@ -4,9 +4,6 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Employees } from './pages/employees/employees';
 import { Projects } from './pages/projects/projects';
 import { Request } from './pages/request/request';
-import { Performance } from './pages/performance/performance';
-import { Notifications } from './pages/notifications/notifications';
-import { Settings } from './pages/settings/settings';
 
 export const routes: Routes = [
   {
@@ -18,9 +15,6 @@ export const routes: Routes = [
       { path: 'employees', component: Employees },
       { path: 'projects', component: Projects },
       { path: 'request', component: Request },
-      { path: 'performance', component: Performance },
-      { path: 'notifications', component: Notifications },
-      { path: 'settings', component: Settings },
     ]
   }
 ];
