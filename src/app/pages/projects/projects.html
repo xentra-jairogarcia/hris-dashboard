@@ -1,1 +1,85 @@
-<p>projects works!</p>
+<!-- projects.html -->
+<div class="pm-container">
+
+  <!-- Page Title -->
+  <h1 class="pm-title">Project Management</h1>
+
+  <!-- Toolbar -->
+  <div class="pm-toolbar">
+
+    <!-- Search -->
+    <div class="pm-search">
+      <svg class="pm-search__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="7" cy="7" r="5.5" stroke="#9ca3af" stroke-width="1.5"/>
+        <path d="M11 11L14 14" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <input
+        class="pm-search__input"
+        type="text"
+        placeholder="Search by name"
+        [(ngModel)]="searchQuery"
+      />
+    </div>
+
+    <!-- Status Filter -->
+    <div class="pm-status-wrap">
+      <select
+        class="pm-status-select"
+        (change)="onStatusChange($any($event.target).value)"
+      >
+        <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+      </select>
+      <svg class="pm-status-select__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M3.5 5.5L7 9L10.5 5.5" stroke="#4b5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- New Project -->
+    <button class="pm-btn-new" (click)="onNewProject()">New Project</button>
+
+  </div>
+
+  <!-- Table -->
+  <div class="pm-table-wrap">
+    <table class="pm-table">
+      <thead>
+        <tr>
+          <th>PROJECT ID</th>
+          <th>PROJECT NAME</th>
+          <th>SUPERVISOR</th>
+          <th>STATUS</th>
+          <th>HEADCOUNT</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of filteredProjects">
+          <td class="pm-table__id">{{ project.id }}</td>
+          <td>{{ project.name }}</td>
+          <td>{{ project.supervisor }}</td>
+          <td>
+            <span class="pm-badge" [ngClass]="'pm-badge--' + project.status.toLowerCase().replace(' ', '-')">
+              {{ project.status }}
+            </span>
+          </td>
+          <td>{{ project.headcount }}</td>
+          <td>
+            <button class="pm-btn-view" (click)="onViewDetails(project)">
+              <svg width="25" height="15" viewBox="0 0 15 15" fill="none">
+                <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="7.5" cy="7.5" r="2.2" fill="currentColor"/>
+              </svg>
+              View Details
+            </button>
+          </td>
+        </tr>
+
+        <!-- Empty state -->
+        <tr *ngIf="filteredProjects.length === 0">
+          <td colspan="6" class="pm-table__empty">No projects found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
