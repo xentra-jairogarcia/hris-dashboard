@@ -11,4 +11,17 @@
     &:hover {
         color: var(--color-blue-700);
     }
+
+    &.has-icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .eye-icon {
+        width: 20px;
+        height: 20px;
+    }
 }

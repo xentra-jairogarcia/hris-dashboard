@@ -5,9 +5,9 @@
         <h1>Performance Reviews</h1>
 
         <div class="performance-tabs-top">
-        <app-pill-tab-button label="Performance" [active]="true"></app-pill-tab-button>
-        <app-pill-tab-button label="Career" [active]="false"></app-pill-tab-button>
-        <app-pill-tab-button label="Assets" [active]="false"></app-pill-tab-button>
+        <app-tab-button label="Performance" [active]="true" variant="pill"></app-tab-button>
+        <app-tab-button label="Career" [active]="false" variant="pill"></app-tab-button>
+        <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
         </div>
     </div>
 
@@ -37,31 +37,20 @@
         </thead>
 
         <tbody>
+            @for (review of reviews; track review.id) {
             <tr>
-            <td>REV001</td>
-            <td>Juan Dela Cruz</td>
-            <td>Annual</td>
-            <td>Q4 2025</td>
-            <td>Steve Rogers</td>
-            <td>2026-01-15</td>
-            <td><span class="badge draft">Draft</span></td>
+            <td>{{ review.id }}</td>
+            <td>{{ review.employee }}</td>
+            <td>{{ review.type }}</td>
+            <td>{{ review.period }}</td>
+            <td>{{ review.reviewer }}</td>
+            <td>{{ review.reviewerDate }}</td>
+            <td><span class="badge" [ngClass]="getStatusClass(review.status)">{{ review.status }}</span></td>
             <td class="actions">
-                <app-view-details-link label="View Details"></app-view-details-link>
+                <app-text-link-button label="View Details" icon="eye"></app-text-link-button>
             </td>
             </tr>
-
-            <tr>
-            <td>REV002</td>
-            <td>Gwyneth Espinoza</td>
-            <td>Probation</td>
-            <td>Q3 2025</td>
-            <td>Bruce Banner</td>
-            <td>2026-01-14</td>
-            <td><span class="badge draft">Draft</span></td>
-            <td class="actions">
-                <app-view-details-link label="View Details"></app-view-details-link>
-            </td>
-            </tr>
+            }
         </tbody>
         </table>
 

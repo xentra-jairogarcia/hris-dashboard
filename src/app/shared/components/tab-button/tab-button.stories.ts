@@ -9,6 +9,7 @@ const meta: Meta<TabButtonComponent> = {
   argTypes: {
     label: { control: 'text' },
     active: { control: 'boolean' },
+    variant: { control: 'select', options: ['underline', 'pill'] },
   },
   args: { tabClick: fn() },
 };
@@ -16,58 +17,36 @@ const meta: Meta<TabButtonComponent> = {
 export default meta;
 type Story = StoryObj<TabButtonComponent>;
 
-export const ActiveTab: Story = {
+// Underline variant
+export const UnderlineActive: Story = {
   args: {
     label: 'Personal Information',
     active: true,
+    variant: 'underline',
   },
 };
 
-export const InactiveTab: Story = {
+export const UnderlineInactive: Story = {
   args: {
     label: 'Employment Details',
     active: false,
+    variant: 'underline',
   },
 };
 
-export const AllTab: Story = {
+// Pill variant
+export const PillActive: Story = {
   args: {
-    label: 'All',
+    label: 'Performance',
     active: true,
+    variant: 'pill',
   },
 };
 
-export const NewRequestTab: Story = {
+export const PillInactive: Story = {
   args: {
-    label: 'New Request',
+    label: 'Career',
     active: false,
-  },
-};
-
-export const ApprovedTab: Story = {
-  args: {
-    label: 'Approved',
-    active: false,
-  },
-};
-
-export const RejectedTab: Story = {
-  args: {
-    label: 'Rejected',
-    active: false,
-  },
-};
-
-export const DocumentsTab: Story = {
-  args: {
-    label: 'Documents',
-    active: false,
-  },
-};
-
-export const DraftTab: Story = {
-  args: {
-    label: 'Draft',
-    active: true,
+    variant: 'pill',
   },
 };

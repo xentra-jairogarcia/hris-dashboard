@@ -32,59 +32,20 @@
         </thead>
 
         <tbody>
-
+            @for (req of requests; track req.id) {
             <tr>
-            <td>REQ001</td>
-            <td>Juan Dela Cruz</td>
-            <td>Leave</td>
-            <td>2026-01-15</td>
-            <td><span class="status approved">Approved</span></td>
+            <td>{{ req.id }}</td>
+            <td>{{ req.employee }}</td>
+            <td>{{ req.type }}</td>
+            <td>{{ req.date }}</td>
+            <td><span class="status" [ngClass]="getStatusClass(req.status)">{{ req.status }}</span></td>
             <td class="action">
-                <a routerLink="/request/REQ001">
-                    <app-view-details-link label="View Details"></app-view-details-link>
+                <a [routerLink]="'/request/' + req.id">
+                    <app-text-link-button label="View Details" icon="eye"></app-text-link-button>
                 </a>
             </td>
             </tr>
-
-            <tr>
-            <td>REQ002</td>
-            <td>Gwyneth Espinoza</td>
-            <td>COE</td>
-            <td>2026-01-14</td>
-            <td><span class="status pending">Pending</span></td>
-            <td class="action">
-                <a routerLink="/request/REQ002">
-                    <app-view-details-link label="View Details"></app-view-details-link>
-                </a>
-            </td>
-            </tr>
-
-            <tr>
-            <td>REQ003</td>
-            <td>LeBron James</td>
-            <td>ABC</td>
-            <td>2026-01-14</td>
-            <td><span class="status approved">Approved</span></td>
-            <td class="action">
-                <a routerLink="/request/REQ003">
-                    <app-view-details-link label="View Details"></app-view-details-link>
-                </a>
-            </td>
-            </tr>
-
-            <tr>
-            <td>REQ004</td>
-            <td>Kyrie Irving</td>
-            <td>DEF</td>
-            <td>2026-01-13</td>
-            <td><span class="status rejected">Rejected</span></td>
-            <td class="action">
-                <a routerLink="/request/REQ004">
-                    <app-view-details-link label="View Details"></app-view-details-link>
-                </a>
-            </td>
-            </tr>
-
+            }
         </tbody>
 
         </table>

@@ -8,6 +8,7 @@ const meta: Meta<TextLinkButtonComponent> = {
   tags: ['autodocs'],
   argTypes: {
     label: { control: 'text' },
+    icon: { control: 'select', options: [null, 'eye'] },
   },
   args: { clicked: fn() },
 };
@@ -15,20 +16,30 @@ const meta: Meta<TextLinkButtonComponent> = {
 export default meta;
 type Story = StoryObj<TextLinkButtonComponent>;
 
-export const MarkAllAsRead: Story = {
+export const Default: Story = {
   args: {
     label: 'Mark all as read',
-  },
-};
-
-export const ViewProfile: Story = {
-  args: {
-    label: 'View Profile',
+    icon: null,
   },
 };
 
 export const MarkAsRead: Story = {
   args: {
     label: 'Mark as read',
+    icon: null,
+  },
+};
+
+export const ViewDetailsWithIcon: Story = {
+  args: {
+    label: 'View Details',
+    icon: 'eye',
+  },
+};
+
+export const ViewProfileWithIcon: Story = {
+  args: {
+    label: 'View Profile',
+    icon: 'eye',
   },
 };

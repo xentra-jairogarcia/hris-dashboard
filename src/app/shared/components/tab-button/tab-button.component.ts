@@ -9,6 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     <button
       class="tab"
       [class.active]="active"
+      [class.pill]="variant === 'pill'"
       (click)="tabClick.emit()">
       {{ label }}
     </button>
@@ -18,5 +19,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class TabButtonComponent {
   @Input() label = 'Tab';
   @Input() active = false;
+  @Input() variant: 'underline' | 'pill' = 'underline';
   @Output() tabClick = new EventEmitter<void>();
 }

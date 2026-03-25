@@ -4,39 +4,15 @@
 
     <!-- Top Stats -->
     <div class="stats-grid">
-
-    <div class="stat-card blue">
-        <div class="stat-content">
-            <p class="stat-title">Total Employees</p>
-            <h2>67</h2>
+        @for (stat of stats; track stat.title) {
+        <div class="stat-card" [ngClass]="stat.color">
+            <div class="stat-content">
+                <p class="stat-title">{{ stat.title }}</p>
+                <h2>{{ stat.value }}</h2>
+            </div>
+            <div class="stat-icon"><img [src]="stat.icon" alt=""></div>
         </div>
-        <div class="stat-icon"><img src="/total.png" alt=""></div>
-    </div>
-
-    <div class="stat-card green">
-        <div class="stat-content">
-            <p class="stat-title">Active Employees</p>
-            <h2>14</h2>
-        </div>
-        <div class="stat-icon"><img src="/active.png" alt=""></div>
-        </div>
-
-    <div class="stat-card purple">
-        <div class="stat-content">
-            <p class="stat-title">On Leave</p>
-            <h2>14</h2>
-        </div>
-        <div class="stat-icon"><img src="/leave.png" alt=""></div>
-        </div>
-
-    <div class="stat-card orange">
-        <div class="stat-content">
-            <p class="stat-title">Pending Request</p>
-            <h2>14</h2>
-        </div>
-        <div class="stat-icon"><img src="/pending.png" alt=""></div>
-        </div>
-
+        }
     </div>
 
 
@@ -75,26 +51,14 @@
             </thead>
 
             <tbody>
+            @for (req of recentRequests; track req.employee) {
             <tr>
-                <td>Juan Dela Cruz</td>
-                <td>Type A</td>
-                <td>01-25-2026</td>
-                <td><span class="status pending">Pending</span></td>
+                <td>{{ req.employee }}</td>
+                <td>{{ req.type }}</td>
+                <td>{{ req.date }}</td>
+                <td><span class="status" [ngClass]="getStatusClass(req.status)">{{ req.status }}</span></td>
             </tr>
-
-            <tr>
-                <td>Dwayne Wade</td>
-                <td>Type B</td>
-                <td>01-17-2026</td>
-                <td><span class="status pending">Pending</span></td>
-            </tr>
-
-            <tr>
-                <td>James Yap</td>
-                <td>Type C</td>
-                <td>01-16-2026</td>
-                <td><span class="status approved">Approved</span></td>
-            </tr>
+            }
             </tbody>
         </table>
 
@@ -106,46 +70,41 @@
 
         <h3>Birthday Celebrants</h3>
 
+        @for (bday of birthdays; track bday.name) {
         <div class="birthday-item">
-            <div class="avatar">NS</div>
+            <div class="avatar">{{ bday.initials }}</div>
             <div class="celebrant-info">
-            <p class="name">Neil Salcedo</p>
-            <span class="role">Backend</span>
-            <p class="date">January 31.</p>
+            <p class="name">{{ bday.name }}</p>
+            <span class="role">{{ bday.role }}</span>
+            <p class="date">{{ bday.date }}</p>
             </div>
         </div>
-
-        <div class="birthday-item">
-            <div class="avatar">TS</div>
-            <div class="celebrant-info">
-            <p class="name">Tanya Salcedo</p>
-            <span class="role">Frontend</span>
-            <p class="date">February 14.</p>
-            </div>
-        </div>
+        }
 
         </div>
 
     </div>
 
     <!-- Onboarding -->
+    @for (item of onboardingItems; track item.name) {
     <div class="card onboarding">
         <h3 class="onboarding-h1">Onboarding in Progress</h3>
         <div class="onboard-item">
-            <div class="avatar">AC</div>
+            <div class="avatar">{{ item.initials }}</div>
             <div class="employee-info">
-                <p class="name">Al Cedrick Garcia</p>
-                <span class="role">Software Engineer</span>
-                <p class="start">Start Date: 2026-01-28</p>
+                <p class="name">{{ item.name }}</p>
+                <span class="role">{{ item.role }}</span>
+                <p class="start">Start Date: {{ item.startDate }}</p>
             </div>
             <div class="progress-section">
                 <p>Progress</p>
                 <div class="progress-bar">
-                    <div class="progress" style="width:35%"></div>
+                    <div class="progress" [style.width.%]="item.progress"></div>
                 </div>
             </div>
-            <div class="percent">35%</div>
+            <div class="percent">{{ item.progress }}%</div>
         </div>
     </div>
+    }
 
 </div>
