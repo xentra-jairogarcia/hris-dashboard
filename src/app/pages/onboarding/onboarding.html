@@ -1,23 +1,23 @@
 <!-- LIST PAGE -->
-<div class="page page--list" *ngIf="!activeDetailPage">
+<div class="page page--list" *ngIf="!activeEmployeeId">
   <h1 class="page-title">Onboarding Management</h1>
 
   <div class="stat-grid">
     <div class="stat-card">
       <p class="stat-card__label">Total New Hires</p>
-      <p class="stat-card__value">{{ totalHires }}</p>
+      <p class="stat-card__value">{{ stats.total }}</p>
     </div>
     <div class="stat-card">
       <p class="stat-card__label">In Progress</p>
-      <p class="stat-card__value">{{ inProgress }}</p>
+      <p class="stat-card__value">{{ stats.inProgress }}</p>
     </div>
     <div class="stat-card">
       <p class="stat-card__label">Completed</p>
-      <p class="stat-card__value">{{ completed }}</p>
+      <p class="stat-card__value">{{ stats.completed }}</p>
     </div>
   </div>
 
-  <h2 class="section-title">New Hires</h2>
+  <h2 class="section-title">New Hires</h2> 
 
   <div class="hire-list">
     <div class="hire-card" *ngFor="let emp of employees">
@@ -37,25 +37,25 @@
         </div>
         <p class="hire-progress__sub">{{ emp.completed }} of {{ emp.total }} items completed</p>
       </div>
-      <a href="javascript:void(0)" class="btn-checklist" (click)="showDetail(emp.id)">View Checklist</a>
+      <button class="btn-checklist" (click)="viewChecklist(emp.id)">View Checklist</button>
     </div>
   </div>
 </div>
 
 <!-- DETAIL PAGE -->
-<div class="page page--detail" *ngIf="activeDetailPage">
+<div class="page page--detail" *ngIf="activeEmployeeId">
   <div class="page-header">
     <h1 class="page-title">Onboarding Management</h1>
-    <a href="javascript:void(0)" class="btn-back" (click)="goBack()">
+    <button class="btn-back" (click)="back()">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M9 11L5 7L9 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       Go Back
-    </a>
+    </button>
   </div>
 
   <!-- Employee summary -->
-  <div class="employee-summary" *ngIf="getCurrentEmployee() as emp">
+  <div class="employee-summary" *ngIf="getEmployee() as emp">
     <div class="avatar">{{ emp.initials }}</div>
     <div class="hire-info">
       <p class="hire-info__name">{{ emp.name }}</p>
@@ -77,7 +77,7 @@
   <div class="checklist-table">
     <div class="checklist-section">Documents</div>
 
-    <div class="task-row" *ngFor="let task of getCurrentEmployee()?.tasks">
+    <div class="task-row" *ngFor="let task of getEmployee()?.tasks">
       <div class="task-checkbox" [class.task-checkbox--done]="task.completed">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" *ngIf="task.completed">
           <path d="M2 5L4.5 7.5L8.5 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -88,13 +88,7 @@
         <span class="badge-required" *ngIf="task.required">Required</span>
         <p class="task-file">{{ task.file }}</p>
       </div>
-      <a href="javascript:void(0)" class="task-view">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/>
-          <circle cx="7" cy="7" r="2" fill="currentColor"/>
-        </svg>
-        View
-      </a>
+      <app-text-link-button label="View Details" icon="eye"></app-text-link-button>
     </div>
   </div>
 </div>

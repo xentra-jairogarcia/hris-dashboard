@@ -72,6 +72,7 @@ export const ViewProfile: Story = {
     label: 'View Profile',
     variant: 'blue',
     size: 'medium',
+    icon: 'profile',
   },
 };
 

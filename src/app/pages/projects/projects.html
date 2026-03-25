@@ -64,13 +64,7 @@
           </td>
           <td>{{ project.headcount }}</td>
           <td>
-            <button class="pm-btn-view" (click)="onViewDetails(project)">
-              <svg width="25" height="15" viewBox="0 0 15 15" fill="none">
-                <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/>
-                <circle cx="7.5" cy="7.5" r="2.2" fill="currentColor"/>
-              </svg>
-              View Details
-            </button>
+            <app-text-link-button label="View Details" icon="eye" (clicked)="onViewDetails(project)"></app-text-link-button>
           </td>
         </tr>
 

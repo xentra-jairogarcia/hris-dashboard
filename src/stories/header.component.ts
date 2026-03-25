@@ -14,7 +14,7 @@ import type { User } from './user';
       <button *ngIf="!user" (click)="onLogin.emit()">Log in</button>
       <button *ngIf="user" (click)="onLogout.emit()">Log out</button>
       <p *ngIf="user">Welcome, {{ user.name }}!</p>
-    </header>
+    </header>      
   `,
   styles: [`
     header {

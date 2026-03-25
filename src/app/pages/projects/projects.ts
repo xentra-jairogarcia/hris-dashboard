@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
 
 export interface Project {
   id: string;
@@ -12,7 +13,7 @@ export interface Project {
 
 @Component({
   selector: 'app-projects',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TextLinkButtonComponent],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })

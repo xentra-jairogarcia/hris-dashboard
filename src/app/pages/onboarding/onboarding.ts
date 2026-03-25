@@ -1,24 +1,44 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
+
+interface Task {
+  name: string;
+  required: boolean;
+  file: string;
+  completed: boolean;
+}
+
+interface Employee {
+  id: string;
+  initials: string;
+  name: string;
+  role: string;
+  startDate: string;
+  completed: number;
+  total: number;
+  progress: number;
+  tasks: Task[];
+}
 
 @Component({
   selector: 'app-onboarding',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TextLinkButtonComponent],
   templateUrl: './onboarding.html',
   styleUrls: ['./onboarding.scss']
 })
 export class Onboarding {
-  activeDetailPage: string | null = null;
+  activeEmployeeId: string | null = null;
 
-  employees = [
+  employees: Employee[] = [
     {
       id: 'ac',
       initials: 'AC',
       name: 'Al Cedrick Garcia',
       role: 'Software Engineer',
-      startDate: '2026-01-28',
+      startDate: '2026-01-28',  
       completed: 3,
       total: 8,
       progress: 35,
@@ -83,19 +103,21 @@ export class Onboarding {
     }
   ];
 
-  totalHires = 24;
-  inProgress = 14;
-  completed = 10;
+  stats = {
+    total: 24,
+    inProgress: 14,
+    completed: 10
+  };
 
-  showDetail(employeeId: string): void {
-    this.activeDetailPage = employeeId;
+  viewChecklist(id: string): void {
+    this.activeEmployeeId = id;
   }
 
-  goBack(): void {
-    this.activeDetailPage = null;
+  back(): void {
+    this.activeEmployeeId = null;
   }
 
-  getCurrentEmployee(): any {
-    return this.employees.find(emp => emp.id === this.activeDetailPage);
+  getEmployee(): Employee | undefined {
+    return this.employees.find(emp => emp.id === this.activeEmployeeId);
   }
 }
