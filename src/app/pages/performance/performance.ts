@@ -21,6 +21,23 @@ interface Review {
   };
 }
 
+interface CareerEntry {
+  id: string;
+  type: string;
+  date: string;
+  newValue: string;
+  previous: string;
+  reason: string;
+}
+
+interface CompensationEntry {
+  date: string;
+  basicSalary: string;
+  allowances: string;
+  total: string;
+  change: string;
+}
+
 @Component({
   selector: 'app-performance',
   imports: [CommonModule, TabButtonComponent, TextLinkButtonComponent],
@@ -28,8 +45,13 @@ interface Review {
   styleUrl: './performance.scss',
 })
 export class Performance {
+  activePage: 'performance' | 'career' = 'performance';
   selectedReview: Review | null = null;
   activeTab: 'scores' | 'feedback' | 'recommendation' = 'scores';
+  careerTab: 'history' | 'compensation' = 'history';
+
+  selectedCareerEmployee = 'Aljo Cullamco';
+  selectedCareerPosition = 'Front-End Developer';
 
   scoreItems = [
     { key: 'technicalSkills', label: 'Technical Skills' },
@@ -60,6 +82,17 @@ export class Performance {
       status: 'Draft',
       scores: { overall: 4.0, technicalSkills: 3.5, softSkills: 4.5, attendance: 4.0 },
     },
+  ];
+
+  careerHistory: CareerEntry[] = [
+    { id: '1', type: 'Promotion', date: '2026-01-14', newValue: 'Senior Software Developer', previous: 'N/A', reason: 'Initial Hire' },
+    { id: '2', type: 'Absorption', date: '2026-01-14', newValue: 'Regular', previous: 'N/A', reason: 'Initial Hire' },
+    { id: '3', type: 'Hired', date: '2026-01-14', newValue: 'Front-End Developer', previous: 'N/A', reason: 'Initial Hire' },
+  ];
+
+  compensationHistory: CompensationEntry[] = [
+    { date: '2026-01-29', basicSalary: 'PHP 45,000', allowances: 'PHP 5,000', total: 'PHP 50,000', change: '+15%' },
+    { date: '2026-01-01', basicSalary: 'PHP 35,000', allowances: 'PHP 4,000', total: 'PHP 39,000', change: 'N/A' },
   ];
 
   getStatusClass(status: string): string {

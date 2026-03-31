@@ -1,151 +1,134 @@
-@if (!selectedReview) {
+@if (activePage === 'performance') {
 
-  <div class="performance-page">
+  @if (!selectedReview) {
 
-    <!-- Header -->
-    <div class="performance-header">
-      <h1>Performance Reviews</h1>
+    <div class="performance-page">
 
-      <div class="performance-tabs-top">
-        <app-tab-button label="Performance" [active]="true" variant="pill"></app-tab-button>
-        <app-tab-button label="Career" [active]="false" variant="pill"></app-tab-button>
-        <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
-      </div>
-    </div>
-
-    <!-- Card -->
-    <div class="performance-card">
-
-      <!-- Tabs -->
-      <div class="performance-tabs">
-        <app-tab-button label="Active" [active]="false"></app-tab-button>
-        <app-tab-button label="Completed" [active]="false"></app-tab-button>
-        <app-tab-button label="Draft" [active]="true"></app-tab-button>
-      </div>
-
-      <!-- Table -->
-      <table class="performance-table">
-        <thead>
-          <tr>
-            <th>REVIEW ID</th>
-            <th>EMPLOYEE</th>
-            <th>TYPE</th>
-            <th>PERIOD</th>
-            <th>REVIEWER</th>
-            <th>REVIEWER DATE</th>
-            <th>STATUS</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          @for (review of reviews; track review.id) {
-          <tr>
-            <td>{{ review.id }}</td>
-            <td>{{ review.employee }}</td>
-            <td>{{ review.type }}</td>
-            <td>{{ review.period }}</td>
-            <td>{{ review.reviewer }}</td>
-            <td>{{ review.reviewerDate }}</td>
-            <td><span class="badge" [ngClass]="getStatusClass(review.status)">{{ review.status }}</span></td>
-            <td class="actions">
-              <app-text-link-button label="View Details" icon="eye" (click)="viewDetails(review)"></app-text-link-button>
-            </td>
-          </tr>
-          }
-        </tbody>
-      </table>
-
-    </div>
-
-  </div>
-
-} @else {
-
-  <div class="review-detail-page">
-
-    <!-- Header -->
-    <div class="review-detail-header">
-      <h1>Performance Reviews</h1>
-      <div class="performance-tabs-top">
-        <app-tab-button label="Performance" [active]="true" variant="pill"></app-tab-button>
-        <app-tab-button label="Career" [active]="false" variant="pill"></app-tab-button>
-        <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
-      </div>
-    </div>
-
-    <!-- Card 1: Go Back + Badge -->
-    <div class="detail-card">
-      <div class="card-top-bar">
-        <button class="go-back-btn" (click)="goBack()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5M12 5l-7 7 7 7"/>
-          </svg>
-          Go Back
-        </button>
-        <span class="status-badge" [ngClass]="getStatusClass(selectedReview.status)">{{ selectedReview.status }}</span>
-      </div>
-    </div>
-
-    <!-- Card 2: Employee Info -->
-    <div class="detail-card">
-      <div class="employee-info-row">
-        <div class="info-group">
-          <span class="info-label">EMPLOYEE</span>
-          <span class="info-value">{{ selectedReview.employee }}</span>
-        </div>
-        <div class="info-group">
-          <span class="info-label">POSITION</span>
-          <span class="info-value">{{ selectedReview.position }}</span>
-        </div>
-        <div class="info-group">
-          <span class="info-label">REVIEWER</span>
-          <span class="info-value">{{ selectedReview.reviewer }}</span>
-        </div>
-        <div class="info-group">
-          <span class="info-label">REVIEW DATE</span>
-          <span class="info-value">{{ selectedReview.reviewerDate }}</span>
+      <!-- Header -->
+      <div class="performance-header">
+        <h1>Performance Reviews</h1>
+        <div class="performance-tabs-top">
+          <app-tab-button label="Performance" [active]="true" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
+          <app-tab-button label="Career" [active]="false" variant="pill" (click)="activePage = 'career'"></app-tab-button>
+          <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
         </div>
       </div>
-    </div>
 
-    <!-- Card 3: Tabs + Content -->
-    <div class="detail-card review-detail-card">
+      <!-- Card -->
+      <div class="performance-card">
 
-      <!-- Inner Tabs -->
-      <div class="review-inner-tabs">
-        <button class="inner-tab" [class.active]="activeTab === 'scores'" (click)="activeTab = 'scores'">Scores</button>
-        <button class="inner-tab" [class.active]="activeTab === 'feedback'" (click)="activeTab = 'feedback'">Feedback</button>
-        <button class="inner-tab" [class.active]="activeTab === 'recommendation'" (click)="activeTab = 'recommendation'">Recommendation</button>
+        <!-- Tabs -->
+        <div class="performance-tabs">
+          <app-tab-button label="Active" [active]="false"></app-tab-button>
+          <app-tab-button label="Completed" [active]="false"></app-tab-button>
+          <app-tab-button label="Draft" [active]="true"></app-tab-button>
+        </div>
+
+        <!-- Table -->
+        <table class="performance-table">
+          <thead>
+            <tr>
+              <th>REVIEW ID</th>
+              <th>EMPLOYEE</th>
+              <th>TYPE</th>
+              <th>PERIOD</th>
+              <th>REVIEWER</th>
+              <th>REVIEWER DATE</th>
+              <th>STATUS</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (review of reviews; track review.id) {
+            <tr>
+              <td>{{ review.id }}</td>
+              <td>{{ review.employee }}</td>
+              <td>{{ review.type }}</td>
+              <td>{{ review.period }}</td>
+              <td>{{ review.reviewer }}</td>
+              <td>{{ review.reviewerDate }}</td>
+              <td><span class="badge" [ngClass]="getStatusClass(review.status)">{{ review.status }}</span></td>
+              <td class="actions">
+                <app-text-link-button label="View Details" icon="eye" (click)="viewDetails(review)"></app-text-link-button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+
       </div>
 
-      <!-- Scores Tab -->
-      @if (activeTab === 'scores') {
-        <div class="scores-section">
+    </div>
 
-          <div class="score-row overall">
-            <span class="score-label">Overall Performance</span>
-            <div class="score-right">
-              <div class="stars">
-                @for (star of getStars(selectedReview.scores.overall); track $index) {
-                  <svg class="star" [class.filled]="star === 'full'" [class.half]="star === 'half'"
-                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                  </svg>
-                }
-              </div>
-              <span class="score-value">{{ selectedReview.scores.overall }}</span>
-            </div>
+  } @else {
+
+    <div class="review-detail-page">
+
+      <!-- Header -->
+      <div class="review-detail-header">
+        <h1>Performance Reviews</h1>
+        <div class="performance-tabs-top">
+          <app-tab-button label="Performance" [active]="true" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
+          <app-tab-button label="Career" [active]="false" variant="pill" (click)="activePage = 'career'"></app-tab-button>
+          <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
+        </div>
+      </div>
+
+      <!-- Card 1: Go Back + Badge -->
+      <div class="detail-card">
+        <div class="card-top-bar">
+          <button class="go-back-btn" (click)="goBack()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+            Go Back
+          </button>
+          <span class="status-badge" [ngClass]="getStatusClass(selectedReview.status)">{{ selectedReview.status }}</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Employee Info -->
+      <div class="detail-card">
+        <div class="employee-info-row">
+          <div class="info-group">
+            <span class="info-label">EMPLOYEE</span>
+            <span class="info-value">{{ selectedReview.employee }}</span>
           </div>
+          <div class="info-group">
+            <span class="info-label">POSITION</span>
+            <span class="info-value">{{ selectedReview.position }}</span>
+          </div>
+          <div class="info-group">
+            <span class="info-label">REVIEWER</span>
+            <span class="info-value">{{ selectedReview.reviewer }}</span>
+          </div>
+          <div class="info-group">
+            <span class="info-label">REVIEW DATE</span>
+            <span class="info-value">{{ selectedReview.reviewerDate }}</span>
+          </div>
+        </div>
+      </div>
 
-          @for (item of scoreItems; track item.key) {
-            <div class="score-row">
-              <span class="score-label">{{ item.label }}</span>
+      <!-- Card 3: Tabs + Content -->
+      <div class="detail-card review-detail-card">
+
+        <!-- Inner Tabs -->
+        <div class="review-inner-tabs">
+          <button class="inner-tab" [class.active]="activeTab === 'scores'" (click)="activeTab = 'scores'">Scores</button>
+          <button class="inner-tab" [class.active]="activeTab === 'feedback'" (click)="activeTab = 'feedback'">Feedback</button>
+          <button class="inner-tab" [class.active]="activeTab === 'recommendation'" (click)="activeTab = 'recommendation'">Recommendation</button>
+        </div>
+
+        <!-- Scores Tab -->
+        @if (activeTab === 'scores') {
+          <div class="scores-section">
+
+            <div class="score-row overall">
+              <span class="score-label">Overall Performance</span>
               <div class="score-right">
                 <div class="stars">
-                  @for (star of getStars(selectedReview.scores[item.key]); track $index) {
+                  @for (star of getStars(selectedReview.scores.overall); track $index) {
                     <svg class="star" [class.filled]="star === 'full'" [class.half]="star === 'half'"
                       xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                       stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -153,54 +136,192 @@
                     </svg>
                   }
                 </div>
-                <span class="score-value">{{ selectedReview.scores[item.key] }}</span>
+                <span class="score-value">{{ selectedReview.scores.overall }}</span>
+              </div>
+            </div>
+
+            @for (item of scoreItems; track item.key) {
+              <div class="score-row">
+                <span class="score-label">{{ item.label }}</span>
+                <div class="score-right">
+                  <div class="stars">
+                    @for (star of getStars(selectedReview.scores[item.key]); track $index) {
+                      <svg class="star" [class.filled]="star === 'full'" [class.half]="star === 'half'"
+                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                      </svg>
+                    }
+                  </div>
+                  <span class="score-value">{{ selectedReview.scores[item.key] }}</span>
+                </div>
+              </div>
+            }
+
+          </div>
+        }
+
+        @if (activeTab === 'feedback') {
+          <div class="feedback-section">
+            <div class="feedback-inner-section">
+              <h4>Supervisor Feedback</h4>
+              <div class="feedback-area">
+                <div class="feedback-text">
+                  <span>Excellent performance this quarter</span>
+                </div>
+              </div>
+            </div>
+            <div class="feedback-inner-section">
+              <h4>Employee Feedback</h4>
+              <div class="feedback-area">
+                <div class="feedback-text">
+                  <span>Excellent performance this quarter</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === 'recommendation') {
+          <div class="recommendation-section">
+            <div class="recommendation-row">
+              <div class="recommendation-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="recommendation-icon">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <polyline points="9 12 11 14 15 10"/>
+                </svg>
+                <span class="recommendation-title">Overall Performance</span>
+              </div>
+              <p class="recommendation-empty">No recommendation yet</p>
+            </div>
+          </div>
+        }
+
+      </div> <!-- end Card 3 -->
+
+    </div>
+
+  }
+
+} @else if (activePage === 'career') {
+
+  <div class="career-page">
+
+    <!-- Header -->
+    <div class="career-header">
+      <h1>Career</h1>
+      <div class="performance-tabs-top">
+        <app-tab-button label="Performance" [active]="false" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
+        <app-tab-button label="Career" [active]="true" variant="pill" (click)="activePage = 'career'"></app-tab-button>
+        <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
+      </div>
+    </div>
+
+    <!-- Filter Card -->
+    <div class="career-filter-card">
+      <div class="career-filter-row">
+        <span class="filter-label">Select Employee:</span>
+        <div class="career-dropdown">
+          <span>{{ selectedCareerEmployee }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="career-dropdown">
+          <span>{{ selectedCareerPosition }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs + Content Card -->
+    <div class="career-content-card">
+
+      <div class="career-inner-tabs">
+        <button class="inner-tab" [class.active]="careerTab === 'history'" (click)="careerTab = 'history'">Career History</button>
+        <button class="inner-tab" [class.active]="careerTab === 'compensation'" (click)="careerTab = 'compensation'">Compensation</button>
+      </div>
+
+      <!-- Career History Tab -->
+      @if (careerTab === 'history') {
+        <div class="career-history-section">
+          @for (entry of careerHistory; track entry.id) {
+            <div class="timeline-item">
+              <div class="timeline-icon-col">
+                <div class="timeline-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                </div>
+                @if (!$last) {
+                  <div class="timeline-line"></div>
+                }
+              </div>
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <div class="timeline-title-group">
+                    <span class="timeline-type">{{ entry.type }}</span>
+                    <span class="timeline-date">{{ entry.date }}</span>
+                  </div>
+                  <span class="timeline-badge" [ngClass]="entry.type.toLowerCase()">{{ entry.type }}</span>
+                </div>
+                <div class="timeline-card-body">
+                  <div class="timeline-field">
+                    <span class="timeline-field-label">NEW</span>
+                    <span class="timeline-field-value new">{{ entry.newValue }}</span>
+                  </div>
+                  <div class="timeline-field">
+                    <span class="timeline-field-label">PREVIOUS</span>
+                    <span class="timeline-field-value">{{ entry.previous }}</span>
+                  </div>
+                  <div class="timeline-field">
+                    <span class="timeline-field-label">REASON</span>
+                    <span class="timeline-field-value">{{ entry.reason }}</span>
+                  </div>
+                </div>
               </div>
             </div>
           }
-
         </div>
       }
 
-      @if (activeTab === 'feedback') {
-        <div class="feedback-section">
-            <div class="feedback-inner-section">
-                <h4>Supervisor Feedback</h4>
-                <div class="feedback-area">
-                    <div class="feedback-text"> 
-                        <span>Excellent performance this quarter</span>
-                    </div>
-                </div>
-            </div>
-
-                <div class="feedback-inner-section">
-                <h4>Employee Feedback</h4>
-                <div class="feedback-area">
-                    <div class="feedback-text"> 
-                        <span>Excellent performance this quarter</span>
-                    </div>
-                </div>
-            </div>
+      <!-- Compensation Tab -->
+      @if (careerTab === 'compensation') {
+        <div class="compensation-section">
+          <table class="compensation-table">
+            <thead>
+              <tr>
+                <th>EFFECTIVE DATE</th>
+                <th>BASIC SALARY</th>
+                <th>ALLOWANCES</th>
+                <th>TOTAL</th>
+                <th>CHANGE</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (comp of compensationHistory; track comp.date) {
+                <tr>
+                  <td>{{ comp.date }}</td>
+                  <td>{{ comp.basicSalary }}</td>
+                  <td>{{ comp.allowances }}</td>
+                  <td>{{ comp.total }}</td>
+                  <td class="comp-change" [ngClass]="comp.change.startsWith('+') ? 'positive' : 'neutral'">{{ comp.change }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
       }
 
-      @if (activeTab === 'recommendation') {
-        <div class="recommendation-section">
-          <div class="recommendation-row">
-            <div class="recommendation-header">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="recommendation-icon">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <polyline points="9 12 11 14 15 10"/>
-              </svg>
-              <span class="recommendation-title">Overall Performance</span>
-            </div>
-            <p class="recommendation-empty">No recommendation yet</p>
-          </div>
-        </div>
-      }
-
-    </div> <!-- end Card 3 -->
+    </div>
 
   </div>
 
