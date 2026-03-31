@@ -1,24 +1,19 @@
 /* Using global CSS variables from styles.scss */
 :host {
-    --primary-color: var(--green-600);
-    --primary-light: var(--blue-400);
-    --secondary-color: var(--orange-500);
-    --text-primary: #var(--black-500);
+    --text-primary: var(--black-500);
     --text-secondary: var(--black-400);
     --bg-white: #ffffff;
-    --bg-hover: #f8fafc;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .dashboard {
   padding: 32px;
-  background: #fafafa;
   min-height: 100vh;
 }
 
 .page-title {
   font-size: var(--text-3xl);
   margin-bottom: 32px;
+  font-family: var(--font-header);
 }
 
 /* Cards */
@@ -27,7 +22,6 @@
   background: white;
   border-radius: var(--radius-lg);
   padding: 20px;
-  border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -49,7 +43,7 @@
   align-items: center;
   padding: 24px;
   border-radius: var(--radius-lg);
-  color: #333;
+  color: var(--text-primary);
 }
 
 .stat-content {

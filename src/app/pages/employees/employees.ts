@@ -31,8 +31,8 @@ interface Employee {
   name: string;
   initials: string;
   position: string;
-  level: string;
-  status: string;
+  level: 'Mid' | 'Junior' | 'Lead' | 'Senior';
+  status: 'Regular' | 'Probationary' | 'OJT';
   email: string;
   contact: string;
   birthdate: string;
@@ -66,6 +66,8 @@ export class Employees {
   viewMode: 'list' | 'card' = 'card';
   selectedEmployee: Employee | null = null;
   activeTab: 'personal' | 'employment' | 'documents' | 'projects' | 'skillset' = 'personal';
+  currentPage = 1;
+  itemsPerPage = 9;
 
   private defaultDocs: Document[] = [
     { name: 'National ID', status: 'Uploaded' },
@@ -128,7 +130,7 @@ export class Employees {
       skills: this.defaultSkills,
     },
     {
-      id: '2020-34584',
+      id: '2021-11023',
       name: 'Lorenz Fuentes',
       initials: 'LF',
       position: 'Front End Developer',
@@ -170,7 +172,7 @@ export class Employees {
       skills: this.defaultSkills,
     },
     {
-      id: '2022-423942',
+      id: '2022-98731',
       name: 'Carlo Reyes',
       initials: 'CR',
       position: 'Full Stack Developer',
@@ -191,7 +193,7 @@ export class Employees {
       skills: this.defaultSkills,
     },
     {
-      id: '2022-423942',
+      id: '2023-51823',
       name: 'Angela Deo',
       initials: 'AD',
       position: 'QA Engineer',
@@ -212,90 +214,107 @@ export class Employees {
       skills: this.defaultSkills,
     },
     {
-      id: '2022-423942',
-      name: 'Angela Deo',
-      initials: 'AD',
-      position: 'QA Engineer',
-      level: 'Junior',
+      id: '2023-51824',
+      name: 'Patricia Lim',
+      initials: 'PL',
+      position: 'Product Manager',
+      level: 'Senior',
       status: 'Regular',
-      email: 'angela.deo@gmail.com',
-      contact: '09987654321',
-      birthdate: '11-30-2001',
+      email: 'patricia.lim@gmail.com',
+      contact: '09971234567',
+      birthdate: '04-12-1995',
       gender: 'Female',
-      emergencyContact: 'Roberto Deo',
-      address: 'Mandaluyong, Metro Manila',
-      department: 'Quality Assurance',
-      dateHired: '05-15-2023',
-      originalHireDate: '05-15-2023',
-      supervisor: 'Maria Santos',
+      emergencyContact: 'Robert Lim',
+      address: 'BGC, Taguig',
+      department: 'Product',
+      dateHired: '02-01-2021',
+      originalHireDate: '02-01-2021',
+      supervisor: 'Paul Diwa',
       documents: this.defaultDocs,
       projects: this.defaultProjects,
       skills: this.defaultSkills,
     },
     {
-      id: '2022-423942',
-      name: 'Angela Deo',
-      initials: 'AD',
-      position: 'QA Engineer',
-      level: 'Junior',
+      id: '2023-51825',
+      name: 'Diego Ramos',
+      initials: 'DR',
+      position: 'DevOps Engineer',
+      level: 'Mid',
       status: 'Regular',
-      email: 'angela.deo@gmail.com',
-      contact: '09987654321',
-      birthdate: '11-30-2001',
-      gender: 'Female',
-      emergencyContact: 'Roberto Deo',
-      address: 'Mandaluyong, Metro Manila',
-      department: 'Quality Assurance',
-      dateHired: '05-15-2023',
-      originalHireDate: '05-15-2023',
-      supervisor: 'Maria Santos',
+      email: 'diego.ramos@gmail.com',
+      contact: '09962345678',
+      birthdate: '08-20-1998',
+      gender: 'Male',
+      emergencyContact: 'Elena Ramos',
+      address: 'Caloocan, Metro Manila',
+      department: 'Software Dev',
+      dateHired: '07-10-2022',
+      originalHireDate: '07-10-2022',
+      supervisor: 'Aljo Cullamco',
       documents: this.defaultDocs,
       projects: this.defaultProjects,
       skills: this.defaultSkills,
     },
     {
-      id: '2022-423942',
-      name: 'Angela Deo',
-      initials: 'AD',
-      position: 'QA Engineer',
+      id: '2023-51826',
+      name: 'Sofia Mendoza',
+      initials: 'SM',
+      position: 'Marketing Specialist',
       level: 'Junior',
-      status: 'Regular',
-      email: 'angela.deo@gmail.com',
-      contact: '09987654321',
-      birthdate: '11-30-2001',
+      status: 'Probationary',
+      email: 'sofia.mendoza@gmail.com',
+      contact: '09953456789',
+      birthdate: '02-14-2002',
       gender: 'Female',
-      emergencyContact: 'Roberto Deo',
-      address: 'Mandaluyong, Metro Manila',
-      department: 'Quality Assurance',
-      dateHired: '05-15-2023',
-      originalHireDate: '05-15-2023',
-      supervisor: 'Maria Santos',
+      emergencyContact: 'Carlos Mendoza',
+      address: 'Marikina, Metro Manila',
+      department: 'Marketing',
+      dateHired: '11-01-2023',
+      originalHireDate: '11-01-2023',
+      supervisor: 'Patricia Lim',
       documents: this.defaultDocs,
       projects: this.defaultProjects,
       skills: this.defaultSkills,
     },
     {
-      id: '2022-423942',
-      name: 'Angela Deo',
-      initials: 'AD',
-      position: 'QA Engineer',
-      level: 'Junior',
+      id: '2023-51827',
+      name: 'Marco Villanueva',
+      initials: 'MV',
+      position: 'Data Analyst',
+      level: 'Mid',
       status: 'Regular',
-      email: 'angela.deo@gmail.com',
-      contact: '09987654321',
-      birthdate: '11-30-2001',
-      gender: 'Female',
-      emergencyContact: 'Roberto Deo',
-      address: 'Mandaluyong, Metro Manila',
-      department: 'Quality Assurance',
-      dateHired: '05-15-2023',
-      originalHireDate: '05-15-2023',
-      supervisor: 'Maria Santos',
+      email: 'marco.villanueva@gmail.com',
+      contact: '09944567890',
+      birthdate: '06-30-1997',
+      gender: 'Male',
+      emergencyContact: 'Luz Villanueva',
+      address: 'Parañaque, Metro Manila',
+      department: 'Product',
+      dateHired: '03-15-2022',
+      originalHireDate: '03-15-2022',
+      supervisor: 'Patricia Lim',
       documents: this.defaultDocs,
       projects: this.defaultProjects,
       skills: this.defaultSkills,
     },
   ];
+
+  get paginatedEmployees(): Employee[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.employees.slice(start, start + this.itemsPerPage);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.employees.length / this.itemsPerPage);
+  }
+
+  get showingStart(): number {
+    return (this.currentPage - 1) * this.itemsPerPage + 1;
+  }
+
+  get showingEnd(): number {
+    return Math.min(this.currentPage * this.itemsPerPage, this.employees.length);
+  }
 
   viewProfile(employee: Employee): void {
     this.selectedEmployee = employee;
@@ -306,12 +325,22 @@ export class Employees {
     this.selectedEmployee = null;
   }
 
-  getStatusClass(status: string): string {
-    return status.toLowerCase();
+  setPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) this.currentPage = page;
   }
 
-  getLevelClass(level: string): string {
-    return level.toLowerCase();
+
+  getLevelClass(_level: string): string {
+    return 'badge-level';
+  }
+
+  getStatusClass(status: string): string {
+    const statusClasses: { [key: string]: string } = {
+      'Regular': 'badge-regular',
+      'Probationary': 'badge-probationary',
+      'OJT': 'badge-ojt',
+    };
+    return statusClasses[status] || 'badge-default';
   }
 
   getSkillLevelClass(level: string): string {

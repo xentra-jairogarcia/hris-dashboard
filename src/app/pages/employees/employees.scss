@@ -7,14 +7,13 @@
 .page-header {
     display: flex;
     justify-content: space-between;
-    // align-items: center;
-    margin-bottom: 32px;
+    align-items: center;
+    margin-bottom: 24px;
 
     h1 {
         font-size: var(--text-3xl);
     }
 }
-
 
 .view-toggle {
     display: flex;
@@ -24,68 +23,75 @@
     padding: 8px;
 }
 
-.toggle-btn {
-    padding: 8px;
-    border: none;
-    background: transparent;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--black-500);
-    transition: background 0.15s, color 0.15s;
-
-    &.active {
-        background: var(--color-green-50);
-        color: var(--color-green-500);
-        border-radius: var(--radius-lg);
-    }
-}
-
-// Stats
+// Stats container
 .stats {
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-color);
+    background: white;
+    overflow: hidden;
+}
 
-    .stats-actions-row {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: space-between;
+// Stats + search row — single horizontal line
+.stats-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.total-employees {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+
+    .stats-icon {
+        // width: 20px;
+        // height: 20px;
     }
 
-    .total-employees {
-        border-radius: var(--radius-xl);
-        padding: 16px 24px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: var(--green-50);
-        font-size: 16px;
+    .total-label {
+        color: #374151;
+    }
 
-        .total-number {
-            font-weight: 600;
-            color: var(--green-600);
-        }
+    .total-number {
+        font-weight: 700;
+        color: #1e293b;
     }
 }
 
 .search-and-filters {
     display: flex;
-    gap: 16px;
     align-items: center;
-    justify-content: space-between;
-    padding: 16px 24px;
+    gap: 12px;
+}
 
-    form {
-        flex: 1 1 auto;
-        min-width: 0;
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 
-        input {
-            width: 100%;
-            flex: 1 1 auto;
-            min-width: 0;
+    .search-icon {
+        position: absolute;
+        left: 12px;
+        color: #9ca3af;
+        pointer-events: none;
+    }
+
+    input[type="search"] {
+        padding: 10px 16px 10px 38px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        min-width: 240px;
+        outline: none;
+        background: white;
+
+        &:focus {
+            border-color: var(--color-green-500);
         }
     }
 }
@@ -101,46 +107,9 @@
     border: 0;
 }
 
-input[type="search"] {
-    padding: 16px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-size: 16px;
-    min-width: 240px;
-}
-
 .btn {
     display: flex;
     gap: 16px;
-}
-
-.filter-btn,
-.sort-btn {
-    padding: 16px 24px;
-    border: 1px solid var(--color-green-500);
-    background: white;
-    border-radius: var(--radius-md);
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--color-green-500);  
-    transition: background 0.2s, color 0.2s;
-    font-weight: var(--font-semibold);
-
-    &:hover {
-        background: var(--color-green-500);
-        color: #ffffff;
-    }
-}
-
-.sort-btn {
-    background: var(--color-green-500);
-    color: white;
-    border: 1px solid var(--color-green-500);
-
-    &:hover {
-        color: var(--color-green-500);
-        background-color: #ffffff;
-    }
 }
 
 // Table View
@@ -148,8 +117,6 @@ input[type="search"] {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
 
     th {
         text-align: left;
@@ -187,137 +154,291 @@ input[type="search"] {
     font-weight: 600;
 }
 
-.view-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    cursor: pointer;
-
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
-// Card View
+// Card Grid
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 8px 24px 24px;
+    gap: 16px;
+    padding: 20px 24px;
 }
 
+// Employee Card — new design
 .employee-card {
     background: white;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-xl);
-    padding: 24px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: box-shadow 0.2s;
+    gap: 0;
 
     &:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     }
 }
 
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+// Employment type badge
+.emp-type-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &.badge-regular {
+        background: var(--color-green-500);
+        color: #fff;
+    }
+
+    &.badge-probationary {
+        background: var(--color-orange-500);
+        color: #fff;
+    }
+
+    &.badge-ojt {
+        background: var(--color-blue-500);
+        color: #fff;
+    }
+}
+
+
+// Avatar + name/email row
+.card-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
 .card-avatar {
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: #e0e7ff;
     color: #4f46e5;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
-    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.card-info {
+    min-width: 0;
 }
 
 .card-name {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    margin: 0 0 8px;
-    color: var(--color-black-400);
+    color: #1e293b;
+    margin: 0 0 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.card-position {
-    font-size: 13px;
-    color: var(--color-black-300);
-    margin: 0 0 4px;
+.card-email {
+    font-size: 12px;
+    color: #94a3b8;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.card-id {
-    font-size: 13px;
-    color: var(--color-black-300);
-    margin: 0 0 16px;
-}
-
-.card-badges {
+// Dept tag + level.position
+.card-tags {
     display: flex;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
 }
 
-.badge {
-    padding: 3px 12px;
+.dept-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: 500;
+    white-space: nowrap;
 
-    &.regular {
-        background: #dcfce7;
-        color: #16a34a;
+    .dept-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
     }
 
-    &.probationary {
-        background: #fef9c3;
-        color: #ca8a04;
-    }
-
-    &.senior {
-        background: #ede9fe;
-        color: #7c3aed;
-    }
-
-    &.mid {
+    &.dept-blue {
         background: #dbeafe;
         color: #2563eb;
+        .dept-dot { background: #2563eb; }
     }
 
-    &.junior {
+    &.dept-purple {
+        background: #ede9fe;
+        color: #7c3aed;
+        .dept-dot { background: #7c3aed; }
+    }
+
+    &.dept-orange {
         background: #ffedd5;
         color: #ea580c;
+        .dept-dot { background: #ea580c; }
+    }
+
+    &.dept-indigo {
+        background: #e0e7ff;
+        color: #4f46e5;
+        .dept-dot { background: #4f46e5; }
+    }
+
+    &.dept-teal {
+        background: #d1fae5;
+        color: #059669;
+        .dept-dot { background: #059669; }
+    }
+
+    &.dept-red {
+        background: #fee2e2;
+        color: #dc2626;
+        .dept-dot { background: #dc2626; }
+    }
+
+    &.dept-gray {
+        background: #f3f4f6;
+        color: #6b7280;
+        .dept-dot { background: #6b7280; }
     }
 }
 
-.view-profile-btn {
-    width: 100%;
-    padding: 10px 16px;
-    background: var(--color-blue-600);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: 14px;
+.level-tag {
+    font-size: 13px;
+    color: var(--black-200);
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Payroll + Join Date rows
+.card-meta {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meta-label {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.meta-value {
+    font-size: 12px;
+    color: #374151;
+    font-weight: 500;
+}
+
+// Pagination
+.pagination-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.pagination-info {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.page-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: white;
+    font-size: 13px;
+    color: #374151;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: background 0.2s;
+    transition: background 0.15s;
 
     &:hover {
-        background: var(--color-blue-700);
+        background: #f9fafb;
     }
 
-    svg {
+    &.active {
+        background: var(--color-green-500, #16a34a);
         color: white;
+        border-color: var(--color-green-500, #16a34a);
     }
 }
 
-// Employee Profile
+.page-ellipsis {
+    font-size: 13px;
+    color: #94a3b8;
+    padding: 0 4px;
+}
+
+.pagination-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-btn {
+    padding: 7px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: white;
+    font-size: 13px;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover:not(:disabled) {
+        background: #f9fafb;
+    }
+
+    &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+    }
+}
+
+// ─── Employee Profile ───────────────────────────────────────────────────────
+
 .employee-profile {
     padding: 32px;
     font-family: 'Inter', sans-serif;
@@ -331,19 +452,6 @@ input[type="search"] {
 
     h1 {
         font-size: var(--text-3xl);
-    }
-}
-
-.back-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    color: #475569;
-    border-radius: var(--radius-md);
-
-    &:hover {
-        background: #f1f5f9;
     }
 }
 
@@ -400,24 +508,6 @@ input[type="search"] {
     }
 }
 
-.promote-btn {
-    padding: 10px 20px;
-    background: #4f86f7;
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    &:hover {
-        background: #3b6fd9;
-    }
-}
-
 .profile-tabs-card {
     background: white;
     border: 1px solid var(--border-color);
@@ -429,27 +519,6 @@ input[type="search"] {
     display: flex;
     border-bottom: 1px solid var(--border-color);
     padding: 0 24px;
-}
-
-.tab {
-    padding: 16px 20px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    font-size: 14px;
-    color: #64748b;
-    cursor: pointer;
-    font-weight: 500;
-    white-space: nowrap;
-
-    &:hover {
-        color: #1e293b;
-    }
-
-    &.active {
-        color: #16a34a;
-        border-bottom-color: #16a34a;
-    }
 }
 
 .profile-content {
@@ -476,6 +545,24 @@ input[type="search"] {
         color: #1e293b;
         margin: 0;
         font-weight: 500;
+    }
+}
+
+// Badge (profile view)
+.badge {
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &.primary {
+        background: var(--color-blue-600);
+        color: white;
+    }
+
+    &.side {
+        background: #9ca3af;
+        color: white;
     }
 }
 
@@ -570,16 +657,6 @@ input[type="search"] {
     margin: 0 0 4px;
 }
 
-.badge.primary {
-    background: var(--color-blue-600);
-    color: white;
-}
-
-.badge.side {
-    background: #9ca3af;
-    color: white;
-}
-
 // Skillset Tab
 .skills-list {
     display: flex;
@@ -627,5 +704,35 @@ input[type="search"] {
     &.advanced {
         background: #dbeafe;
         color: #2563eb;
+    }
+}
+
+// Badge Styles
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    &.badge-level {
+        background-color: var(--color-purple-100);
+        color: var(--color-purple-600);
+    }
+
+    &.badge-regular {
+        background-color: var(--color-green-500);
+        color: #fff;
+    }
+
+    &.badge-probationary {
+        background-color: var(--color-orange-500);
+        color: #fff;
+    }
+
+    &.badge-ojt {
+        background-color: var(--color-blue-500);
+        color: #fff;
     }
 }

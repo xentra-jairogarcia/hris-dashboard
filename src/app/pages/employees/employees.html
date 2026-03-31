@@ -19,24 +19,23 @@
         </div>
     </header>
 
-    <!-- Stats and actions row -->
     <div class="stats">
+        <!-- Stats and actions row -->
         <div class="stats-actions-row">
             <div class="total-employees">
                 <img src="/Employees.png" alt="" class="stats-icon">
-                <span class="total-label">Total Employee:</span>
-                <span class="total-number">{{ employees.length }} Persons</span>
+                <span class="total-label">Total Employee :</span>
+                <span class="total-number">{{ employees.length }} persons</span>
             </div>
-
             <div class="search-and-filters">
-                <form action="/search_results" method="get" role="search">
-                    <label for="employee-search" class="visually-hidden">Search by name</label>
-                    <input type="search" id="employee-search" name="q" placeholder="Search by name">
-                </form>
-                <div class="btn">
-                    <app-filter-sort-button label="Filter" variant="outline"></app-filter-sort-button>
-                    <app-filter-sort-button label="Sort" variant="filled"></app-filter-sort-button>
+                <div class="search-wrapper">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="search" placeholder="Search payroll or name">
                 </div>
+                <app-filter-sort-button label="Filter" variant="outline"></app-filter-sort-button>
+                <app-filter-sort-button label="Sort" variant="filled"></app-filter-sort-button>
             </div>
         </div>
 
@@ -64,9 +63,9 @@
                     </div>
                 </td>
                 <td>{{ emp.position }}</td>
-                <td>{{ emp.level }}</td>
-                <td>{{ emp.status }}</td>
-                <td><app-text-link-button label="View Profile" (clicked)="viewProfile(emp)"></app-text-link-button></td>
+                <td><span class="badge badge-level">{{ emp.level }}</span></td>
+                <td><span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span></td>
+                <td><app-text-link-button label="View Profile" icon="eye" (clicked)="viewProfile(emp)"></app-text-link-button></td>
             </tr>
             }
             </tbody>
@@ -78,22 +77,52 @@
         <div class="cards-grid">
             @for (emp of employees; track emp.id) {
             <div class="employee-card">
-                <div class="card-avatar">{{ emp.initials }}</div>
-                <h4 class="card-name">{{ emp.name }}</h4>
-                <p class="card-position">{{ emp.position }}</p>
-                <p class="card-id">{{ emp.id }}</p>
-                <div class="card-badges">
-                    <span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span>
-                    <span class="badge" [ngClass]="getLevelClass(emp.level)">{{ emp.level }}</span>
+                <div class="card-top">
+                    <span class="emp-type-badge" [ngClass]="getStatusClass(emp.status)">
+                        {{ emp.status }}
+                    </span>
+                    <span class="badge badge-level">{{ emp.level }}</span>
                 </div>
-                <app-action-button
-                    label="View Profile"
-                    variant="blue"
-                    size="medium"
-                    (clicked)="viewProfile(emp)">
-                </app-action-button>
+
+                <div class="card-profile">
+                    <div class="card-avatar">{{ emp.initials }}</div>
+                    <div class="card-info">
+                        <h4 class="card-name">{{ emp.name }}</h4>
+                        <p class="card-email">{{ emp.email }}</p>
+                    </div>
+                </div>
+
+                <div class="card-tags">
+                    <span class="level-tag">{{ emp.position }}</span>
+                </div>
+
+                <div class="card-meta">
+                    <app-action-button [label]="'View Profile'" [variant]="'blue'" [size]="'medium'" [icon]="'profile'" (click)="viewProfile(emp)"></app-action-button>
+                </div>
             </div>
             }
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-row">
+            <span class="pagination-info">
+                Showing {{ showingStart }} to {{ showingEnd }} of {{ employees.length }} entries
+            </span>
+            <div class="page-numbers">
+                @for (page of [1, 2, 3, 4, 5]; track page) {
+                    @if (page <= totalPages) {
+                    <button class="page-btn" [class.active]="currentPage === page" (click)="setPage(page)">{{ page }}</button>
+                    }
+                }
+                @if (totalPages > 5) {
+                <span class="page-ellipsis">...</span>
+                <button class="page-btn" [class.active]="currentPage === totalPages" (click)="setPage(totalPages)">{{ totalPages }}</button>
+                }
+            </div>
+            <div class="pagination-nav">
+                <button class="nav-btn" (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">&#8592; Back</button>
+                <button class="nav-btn" (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next &#8594;</button>
+            </div>
         </div>
         }
     </div>
