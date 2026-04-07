@@ -10,21 +10,17 @@
         <div class="performance-tabs-top">
           <app-tab-button label="Performance" [active]="true" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
           <app-tab-button label="Career" [active]="false" variant="pill" (click)="activePage = 'career'"></app-tab-button>
-          <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
+          <app-tab-button label="Assets" [active]="false" variant="pill" (click)="activePage = 'assets'"></app-tab-button>
         </div>
       </div>
 
       <!-- Card -->
       <div class="performance-card">
-
-        <!-- Tabs -->
         <div class="performance-tabs">
           <app-tab-button label="Active" [active]="false"></app-tab-button>
           <app-tab-button label="Completed" [active]="false"></app-tab-button>
           <app-tab-button label="Draft" [active]="true"></app-tab-button>
         </div>
-
-        <!-- Table -->
         <table class="performance-table">
           <thead>
             <tr>
@@ -55,7 +51,6 @@
             }
           </tbody>
         </table>
-
       </div>
 
     </div>
@@ -64,17 +59,15 @@
 
     <div class="review-detail-page">
 
-      <!-- Header -->
       <div class="review-detail-header">
         <h1>Performance Reviews</h1>
         <div class="performance-tabs-top">
           <app-tab-button label="Performance" [active]="true" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
           <app-tab-button label="Career" [active]="false" variant="pill" (click)="activePage = 'career'"></app-tab-button>
-          <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
+          <app-tab-button label="Assets" [active]="false" variant="pill" (click)="activePage = 'assets'"></app-tab-button>
         </div>
       </div>
 
-      <!-- Card 1: Go Back + Badge -->
       <div class="detail-card">
         <div class="card-top-bar">
           <button class="go-back-btn" (click)="goBack()">
@@ -88,7 +81,6 @@
         </div>
       </div>
 
-      <!-- Card 2: Employee Info -->
       <div class="detail-card">
         <div class="employee-info-row">
           <div class="info-group">
@@ -110,20 +102,15 @@
         </div>
       </div>
 
-      <!-- Card 3: Tabs + Content -->
       <div class="detail-card review-detail-card">
-
-        <!-- Inner Tabs -->
         <div class="review-inner-tabs">
           <button class="inner-tab" [class.active]="activeTab === 'scores'" (click)="activeTab = 'scores'">Scores</button>
           <button class="inner-tab" [class.active]="activeTab === 'feedback'" (click)="activeTab = 'feedback'">Feedback</button>
           <button class="inner-tab" [class.active]="activeTab === 'recommendation'" (click)="activeTab = 'recommendation'">Recommendation</button>
         </div>
 
-        <!-- Scores Tab -->
         @if (activeTab === 'scores') {
           <div class="scores-section">
-
             <div class="score-row overall">
               <span class="score-label">Overall Performance</span>
               <div class="score-right">
@@ -139,7 +126,6 @@
                 <span class="score-value">{{ selectedReview.scores.overall }}</span>
               </div>
             </div>
-
             @for (item of scoreItems; track item.key) {
               <div class="score-row">
                 <span class="score-label">{{ item.label }}</span>
@@ -157,7 +143,6 @@
                 </div>
               </div>
             }
-
           </div>
         }
 
@@ -166,17 +151,13 @@
             <div class="feedback-inner-section">
               <h4>Supervisor Feedback</h4>
               <div class="feedback-area">
-                <div class="feedback-text">
-                  <span>Excellent performance this quarter</span>
-                </div>
+                <div class="feedback-text"><span>Excellent performance this quarter</span></div>
               </div>
             </div>
             <div class="feedback-inner-section">
               <h4>Employee Feedback</h4>
               <div class="feedback-area">
-                <div class="feedback-text">
-                  <span>Excellent performance this quarter</span>
-                </div>
+                <div class="feedback-text"><span>Excellent performance this quarter</span></div>
               </div>
             </div>
           </div>
@@ -199,7 +180,7 @@
           </div>
         }
 
-      </div> <!-- end Card 3 -->
+      </div>
 
     </div>
 
@@ -209,17 +190,15 @@
 
   <div class="career-page">
 
-    <!-- Header -->
     <div class="career-header">
       <h1>Career</h1>
       <div class="performance-tabs-top">
         <app-tab-button label="Performance" [active]="false" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
         <app-tab-button label="Career" [active]="true" variant="pill" (click)="activePage = 'career'"></app-tab-button>
-        <app-tab-button label="Assets" [active]="false" variant="pill"></app-tab-button>
+        <app-tab-button label="Assets" [active]="false" variant="pill" (click)="activePage = 'assets'"></app-tab-button>
       </div>
     </div>
 
-    <!-- Filter Card -->
     <div class="career-filter-card">
       <div class="career-filter-row">
         <span class="filter-label">Select Employee:</span>
@@ -240,7 +219,6 @@
       </div>
     </div>
 
-    <!-- Tabs + Content Card -->
     <div class="career-content-card">
 
       <div class="career-inner-tabs">
@@ -248,7 +226,6 @@
         <button class="inner-tab" [class.active]="careerTab === 'compensation'" (click)="careerTab = 'compensation'">Compensation</button>
       </div>
 
-      <!-- Career History Tab -->
       @if (careerTab === 'history') {
         <div class="career-history-section">
           @for (entry of careerHistory; track entry.id) {
@@ -293,7 +270,6 @@
         </div>
       }
 
-      <!-- Compensation Tab -->
       @if (careerTab === 'compensation') {
         <div class="compensation-section">
           <table class="compensation-table">
@@ -322,6 +298,158 @@
       }
 
     </div>
+
+  </div>
+
+} @else if (activePage === 'assets') {
+
+  <div class="assets-page">
+
+    <!-- Header -->
+    <div class="assets-header">
+      <h1>{{ assetsTab === 'assignments' ? 'Assets' : 'Assets' }}</h1>
+      <div class="performance-tabs-top">
+        <app-tab-button label="Performance" [active]="false" variant="pill" (click)="activePage = 'performance'"></app-tab-button>
+        <app-tab-button label="Career" [active]="false" variant="pill" (click)="activePage = 'career'"></app-tab-button>
+        <app-tab-button label="Assets" [active]="true" variant="pill" (click)="activePage = 'assets'"></app-tab-button>
+      </div>
+    </div>
+
+    <!-- Sub-tabs + Action Row -->
+    <div class="assets-toolbar">
+      <div class="assets-sub-tabs">
+        <button class="assets-sub-tab" [class.active]="assetsTab === 'assignments'" (click)="assetsTab = 'assignments'">Assignments</button>
+        <button class="assets-sub-tab" [class.active]="assetsTab === 'inventory'" (click)="assetsTab = 'inventory'">Inventory</button>
+      </div>
+      <button class="assign-asset-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        {{ assetsTab === 'assignments' ? 'Assign Asset' : 'Add Asset' }}
+      </button>
+    </div>
+
+    <!-- Search + Filter Row -->
+    <div class="assets-search-row">
+      <div class="assets-search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="search-icon">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" placeholder="Search by name" [(ngModel)]="assetSearchQuery" class="search-input"/>
+      </div>
+      <div class="assets-type-filter">
+        <span>All Types</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Assignments Tab -->
+    @if (assetsTab === 'assignments') {
+      <div class="assets-card">
+        <table class="assets-table">
+          <thead>
+            <tr>
+              <th>ASSIGNED TO</th>
+              <th>ASSET INFO</th>
+              <th>DATE ISSUED</th>
+              <th>RETURN DATE</th>
+              <th>STATUS</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (asset of assetAssignments; track asset.id) {
+              <tr>
+                <td>
+                  <div class="assigned-to-cell">
+                    <div class="avatar-initials">{{ asset.initials }}</div>
+                    <div class="assignee-info">
+                      <span class="assignee-name">{{ asset.assignedTo }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="asset-info-cell">
+                    <div class="asset-device-icon">
+                      @if (asset.assetIcon === 'laptop') {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/>
+                        </svg>
+                      }
+                      @if (asset.assetIcon === 'phone') {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1"/>
+                        </svg>
+                      }
+                    </div>
+                    <div class="asset-info-text">
+                      <span class="asset-name">{{ asset.assetName }}</span>
+                      <span class="asset-type">{{ asset.assetType }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ asset.dateIssued }}</td>
+                <td>{{ asset.returnDate }}</td>
+                <td><span class="asset-status-badge" [ngClass]="getAssetStatusClass(asset.status)">{{ asset.status }}</span></td>
+                <td>
+                  <app-text-link-button label="View" icon="eye"></app-text-link-button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <!-- Inventory Tab -->
+    @if (assetsTab === 'inventory') {
+      <div class="inventory-grid">
+        @for (item of inventoryItems; track item.id) {
+          <div class="inventory-card">
+            <div class="inventory-card-top">
+              <div class="inventory-icon-wrap">
+                @if (item.icon === 'laptop') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/>
+                  </svg>
+                }
+                @if (item.icon === 'phone') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1"/>
+                  </svg>
+                }
+              </div>
+              <span class="inventory-badge" [ngClass]="getBadgeClass(item.badge)">{{ item.badge }}</span>
+            </div>
+            <p class="inventory-name">{{ item.name }}</p>
+            <div class="inventory-divider"></div>
+            <div class="inventory-meta">
+              <span class="inventory-meta-label">Quantity</span>
+              <span class="inventory-meta-value" [ngClass]="getInventoryStatusClass(item.status)">{{ item.quantity }} Units</span>
+            </div>
+            <div class="inventory-meta">
+              <span class="inventory-meta-label">Status</span>
+              <span class="inventory-meta-value" [ngClass]="getInventoryStatusClass(item.status)">{{ item.status }}</span>
+            </div>
+            <div class="inventory-divider"></div>
+            <div class="inventory-card-footer">
+              <a class="inventory-report-link">Report Issue</a>
+              <a class="inventory-manual-link">View Manual</a>
+            </div>
+          </div>
+        }
+      </div>
+    }
 
   </div>
 

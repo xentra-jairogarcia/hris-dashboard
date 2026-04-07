@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
 import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
 
@@ -38,17 +39,41 @@ interface CompensationEntry {
   change: string;
 }
 
+interface AssetAssignment {
+  id: string;
+  initials: string;
+  assignedTo: string;
+  assetName: string;
+  assetType: string;
+  assetIcon: 'laptop' | 'phone' | 'tablet';
+  position: string;
+  dateIssued: string;
+  returnDate: string;
+  status: 'Regular' | 'Returned' | 'Lost';
+}
+
+interface InventoryItem {
+  id: string;
+  name: string;
+  icon: 'laptop' | 'phone' | 'tablet';
+  badge: 'New' | 'Assigned' | 'Fail';
+  quantity: number;
+  status: 'In Stock' | 'Assigned' | 'Out of Stock';
+}
+
 @Component({
   selector: 'app-performance',
-  imports: [CommonModule, TabButtonComponent, TextLinkButtonComponent],
+  imports: [CommonModule, FormsModule, TabButtonComponent, TextLinkButtonComponent],
   templateUrl: './performance.html',
   styleUrl: './performance.scss',
 })
 export class Performance {
-  activePage: 'performance' | 'career' = 'performance';
+  activePage: 'performance' | 'career' | 'assets' = 'performance';
   selectedReview: Review | null = null;
   activeTab: 'scores' | 'feedback' | 'recommendation' = 'scores';
   careerTab: 'history' | 'compensation' = 'history';
+  assetsTab: 'assignments' | 'inventory' = 'assignments';
+  assetSearchQuery = '';
 
   selectedCareerEmployee = 'Aljo Cullamco';
   selectedCareerPosition = 'Front-End Developer';
@@ -95,6 +120,18 @@ export class Performance {
     { date: '2026-01-01', basicSalary: 'PHP 35,000', allowances: 'PHP 4,000', total: 'PHP 39,000', change: 'N/A' },
   ];
 
+  assetAssignments: AssetAssignment[] = [
+    { id: '1', initials: 'AC', assignedTo: 'Aljo Cullamco', assetName: 'Macbook Air', assetType: 'Laptop', assetIcon: 'laptop', position: 'Front End Developer', dateIssued: '2026-01-10', returnDate: 'N/A', status: 'Regular' },
+    { id: '2', initials: 'AC', assignedTo: 'Ralph Cruz', assetName: 'Macbook Air', assetType: 'Laptop', assetIcon: 'laptop', position: 'UI/UX Designer', dateIssued: '2026-01-10', returnDate: 'N/A', status: 'Regular' },
+    { id: '3', initials: 'AC', assignedTo: 'Lorenz Fuentes', assetName: 'Iphone 17 Pro', assetType: 'Phone', assetIcon: 'phone', position: 'Front End Developer', dateIssued: '2026-01-10', returnDate: 'N/A', status: 'Regular' },
+  ];
+
+  inventoryItems: InventoryItem[] = [
+    { id: '1', name: 'Macbook Pro', icon: 'laptop', badge: 'New', quantity: 10, status: 'In Stock' },
+    { id: '2', name: 'Macbook Air', icon: 'laptop', badge: 'Assigned', quantity: 5, status: 'Assigned' },
+    { id: '3', name: 'Iphone 17 Pro', icon: 'phone', badge: 'Fail', quantity: 8, status: 'In Stock' },
+  ];
+
   getStatusClass(status: string): string {
     return status.toLowerCase();
   }
@@ -115,5 +152,17 @@ export class Performance {
       if (rating >= pos - 0.5) return 'half';
       return 'empty';
     });
+  }
+
+  getAssetStatusClass(status: string): string {
+    return status.toLowerCase().replace(' ', '-');
+  }
+
+  getBadgeClass(badge: string): string {
+    return badge.toLowerCase();
+  }
+
+  getInventoryStatusClass(status: string): string {
+    return status.toLowerCase().replace(' ', '-');
   }
 }
