@@ -1,19 +1,13 @@
-*, *::before, *::after { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
-}
-
 :host {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-family-body);
   background: #f9fafb;
-  color: #111827;
+  color: var(--black-400);
   min-height: 100vh;
   display: block;
 }
 
 .page {
-  padding: 36px 40px;
+  padding: 32px;
   min-height: 100vh;
 }
 
@@ -26,9 +20,10 @@
 }
 
 .page-title {
-  font-size: 32px;
+  font-size: var(--text-3xl);
+  font-family: var(--font-header);
   margin-bottom: 32px;
-  color: #111827;
+  color: var(--black-500);
 }
 
 /* Go Back button */
@@ -36,28 +31,28 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #ffffff;
-  color: #16a34a;
-  border: 1.5px solid #16a34a;
-  border-radius: 8px;
+  background: white;
+  color: var(--color-green-500);
+  border: 1.5px solid var(--color-green-500);
+  border-radius: var(--radius-lg);
   padding: 8px 16px;
   font-size: 13px;
   font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-family-body);
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
   cursor: pointer;
+
+  &:hover {
+    background: var(--color-green-50);
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
 }
 
-.btn-back:hover {
-  background: #f0fdf4;
-}
-
-.btn-back svg {
-  flex-shrink: 0;
-}
-
-/*LIST PAGE STYLES*/
+/* ── LIST PAGE STYLES ── */
 
 .stat-grid {
   display: grid;
@@ -67,30 +62,30 @@
 }
 
 .stat-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
   padding: 20px 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-2xs);
 }
 
 .stat-card__label {
   font-size: 13px;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--black-200);
   margin-bottom: 6px;
 }
 
 .stat-card__value {
   font-size: 32px;
   font-weight: 700;
-  color: #111827;
+  color: var(--black-500);
 }
 
 .section-title {
   font-size: 16px;
   font-weight: 700;
-  color: #111827;
+  color: var(--black-500);
   margin-bottom: 14px;
 }
 
@@ -102,27 +97,27 @@
 
 /* Hire row card */
 .hire-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
   padding: 18px 24px;
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-2xs);
   transition: box-shadow 0.2s;
-}
 
-.hire-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #d1fae5;
-  color: #065f46;
+  background: var(--color-green-100);
+  color: var(--color-green-800);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,78 +126,78 @@
   flex-shrink: 0;
 }
 
-.hire-info { 
-  flex: 0 0 200px; 
+.hire-info {
+  flex: 0 0 200px;
 }
 
-.hire-info__name { 
-  font-size: 14px; 
-  font-weight: 600; 
-  color: #111827; 
-  margin-bottom: 2px; 
+.hire-info__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black-500);
+  margin-bottom: 2px;
 }
 
-.hire-info__role { 
-  font-size: 12px; 
-  color: #6b7280; 
-  margin-bottom: 2px; 
+.hire-info__role {
+  font-size: 12px;
+  color: var(--black-200);
+  margin-bottom: 2px;
 }
 
-.hire-info__date { 
-  font-size: 12px; 
-  color: #9ca3af; 
+.hire-info__date {
+  font-size: 12px;
+  color: var(--black-100);
 }
 
-.hire-progress { 
-  flex: 1; 
+.hire-progress {
+  flex: 1;
 }
 
-.hire-progress__header { 
-  display: flex; 
-  justify-content: space-between; 
-  margin-bottom: 6px; 
+.hire-progress__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
-.hire-progress__label { 
-  font-size: 12px; 
-  font-weight: 500; 
-  color: #6b7280; 
+.hire-progress__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--black-200);
 }
 
-.hire-progress__pct { 
-  font-size: 12px; 
-  font-weight: 700; 
-  color: #111827; 
+.hire-progress__pct {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--black-500);
 }
 
-.progress-track { 
-  height: 6px; 
-  background: #e5e7eb; 
-  border-radius: 9999px; 
-  overflow: hidden; 
+.progress-track {
+  height: 6px;
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+  overflow: hidden;
 }
 
-.progress-fill { 
-  height: 100%; 
-  background: #22c55e; 
-  border-radius: 9999px; 
+.progress-fill {
+  height: 100%;
+  background: var(--color-green-500);
+  border-radius: var(--radius-full);
+
+  &--complete {
+    background: var(--color-green-600);
+  }
 }
 
-.progress-fill--complete { 
-  background: #16a34a; 
-}
-
-.hire-progress__sub { 
-  font-size: 11px; 
-  color: #9ca3af; 
-  margin-top: 5px; 
+.hire-progress__sub {
+  font-size: 11px;
+  color: var(--black-100);
+  margin-top: 5px;
 }
 
 /* View Checklist link styled as button */
 .btn-checklist {
-  background: #22c55e;
-  color: #ffffff;
-  border-radius: 8px;
+  background: var(--color-green-500);
+  color: white;
+  border-radius: var(--radius-lg);
   padding: 9px 18px;
   font-size: 13px;
   font-weight: 600;
@@ -213,46 +208,46 @@
   transition: background 0.2s;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    background: var(--color-green-600);
+  }
 }
 
-.btn-checklist:hover {
-  background: #16a34a;
-}
-
-/* DETAIL PAGE STYLES */
+/* ── DETAIL PAGE STYLES ── */
 
 /* Employee summary card with blue highlight border */
 .employee-summary {
-  border: 2px solid #3b82f6;
-  border-radius: 12px;
+  border: 2px solid var(--color-blue-400);
+  border-radius: var(--radius-xl);
   padding: 16px 20px;
-  background: #ffffff;
+  background: white;
   margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 16px;
-}
 
-.employee-summary .hire-info { 
-  flex: 0 0 220px; 
-}
+  .hire-info {
+    flex: 0 0 220px;
+  }
 
-.employee-summary .hire-progress { 
-  flex: 1; 
-}
+  .hire-progress {
+    flex: 1;
+  }
 
-.employee-summary .hire-progress__pct {
-  font-size: 14px;
-  font-weight: 700;
+  .hire-progress__pct {
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
 
 /* Checklist table */
 .checklist-table {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-2xs);
 }
 
 /* Section label row */
@@ -260,9 +255,9 @@
   padding: 10px 20px;
   font-size: 13px;
   font-weight: 600;
-  color: #374151;
+  color: var(--black-300);
   background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* Each task row */
@@ -271,64 +266,64 @@
   align-items: flex-start;
   gap: 14px;
   padding: 16px 20px;
-  border-bottom: 1px solid #f3f4f6;
-}
+  border-bottom: 1px solid var(--border-color);
 
-.task-row:last-child {
-  border-bottom: none;
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 /* Checkbox */
 .task-checkbox {
   width: 18px;
   height: 18px;
-  border: 2px solid #d1d5db;
-  border-radius: 4px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
   flex-shrink: 0;
   margin-top: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-}
+  background: white;
 
-.task-checkbox--done {
-  background: #22c55e;
-  border-color: #22c55e;
+  &--done {
+    background: var(--color-green-500);
+    border-color: var(--color-green-500);
+  }
 }
 
 /* Task body */
-.task-body { 
-  flex: 1; 
+.task-body {
+  flex: 1;
 }
 
 .task-name {
   font-size: 14px;
   font-weight: 600;
-  color: #111827;
+  color: var(--black-500);
   margin-bottom: 5px;
-}
 
-.task-name--done {
-  text-decoration: line-through;
-  color: #6b7280;
+  &--done {
+    text-decoration: line-through;
+    color: var(--black-200);
+  }
 }
 
 .badge-required {
   display: inline-block;
   background: #ef4444;
-  color: #ffffff;
+  color: white;
   font-size: 10px;
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   margin-bottom: 5px;
   letter-spacing: 0.3px;
 }
 
 .task-file {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--black-100);
 }
 
 /* View link */
@@ -338,14 +333,14 @@
   gap: 5px;
   font-size: 13px;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--black-200);
   text-decoration: none;
   white-space: nowrap;
   margin-top: 2px;
   transition: color 0.2s;
   cursor: pointer;
-}
 
-.task-view:hover { 
-  color: #16a34a; 
+  &:hover {
+    color: var(--color-green-600);
+  }
 }

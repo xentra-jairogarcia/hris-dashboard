@@ -77,28 +77,22 @@
         <div class="cards-grid">
             @for (emp of employees; track emp.id) {
             <div class="employee-card">
-                <div class="card-top">
-                    <span class="emp-type-badge" [ngClass]="getStatusClass(emp.status)">
-                        {{ emp.status }}
-                    </span>
-                    <span class="badge badge-level">{{ emp.level }}</span>
+                <div class="card-avatar">{{ emp.initials }}</div>
+                <h4 class="card-name">{{ emp.name }}</h4>
+                <p class="card-position">{{ emp.position }}</p>
+                <p class="card-id">{{ emp.id }}</p>
+                <div class="card-badges">
+                    <span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span>
+                    <span class="badge" [ngClass]="getLevelClass(emp.level)">{{ emp.level }}</span>
                 </div>
-
-                <div class="card-profile">
-                    <div class="card-avatar">{{ emp.initials }}</div>
-                    <div class="card-info">
-                        <h4 class="card-name">{{ emp.name }}</h4>
-                        <p class="card-email">{{ emp.email }}</p>
-                    </div>
-                </div>
-
-                <div class="card-tags">
-                    <span class="level-tag">{{ emp.position }}</span>
-                </div>
-
-                <div class="card-meta">
-                    <app-action-button [label]="'View Profile'" [variant]="'blue'" [size]="'medium'" [icon]="'profile'" (click)="viewProfile(emp)"></app-action-button>
-                </div>
+                <app-action-button
+                    label="View Profile"
+                    variant="blue"
+                    size="medium"
+                    icon="eye"
+                    [fullWidth]="true"
+                    (clicked)="viewProfile(emp)">
+                </app-action-button>
             </div>
             }
         </div>

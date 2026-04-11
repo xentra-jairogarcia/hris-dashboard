@@ -158,205 +158,64 @@
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    padding: 20px 24px;
+    gap: 20px;
+    padding: 8px 24px 24px;
 }
 
-// Employee Card — new design
+// Employee Card
 .employee-card {
     background: white;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-xl);
-    padding: 16px 20px;
-    cursor: pointer;
-    transition: box-shadow 0.2s;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    align-items: center;
+    text-align: center;
+    transition: box-shadow 0.2s;
 
     &:hover {
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        box-shadow: var(--shadow-md);
     }
-}
-
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-// Employment type badge
-.emp-type-badge {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-
-    &.badge-regular {
-        background: var(--color-green-500);
-        color: #fff;
-    }
-
-    &.badge-probationary {
-        background: var(--color-orange-500);
-        color: #fff;
-    }
-
-    &.badge-ojt {
-        background: var(--color-blue-500);
-        color: #fff;
-    }
-}
-
-
-// Avatar + name/email row
-.card-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
 }
 
 .card-avatar {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background: #e0e7ff;
     color: #4f46e5;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
-    flex-shrink: 0;
-}
-
-.card-info {
-    min-width: 0;
+    margin-bottom: 12px;
 }
 
 .card-name {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
-    color: #1e293b;
-    margin: 0 0 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin: 0 0 8px;
+    color: var(--black-400);
 }
 
-.card-email {
-    font-size: 12px;
-    color: #94a3b8;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-// Dept tag + level.position
-.card-tags {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-}
-
-.dept-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    white-space: nowrap;
-
-    .dept-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        flex-shrink: 0;
-    }
-
-    &.dept-blue {
-        background: #dbeafe;
-        color: #2563eb;
-        .dept-dot { background: #2563eb; }
-    }
-
-    &.dept-purple {
-        background: #ede9fe;
-        color: #7c3aed;
-        .dept-dot { background: #7c3aed; }
-    }
-
-    &.dept-orange {
-        background: #ffedd5;
-        color: #ea580c;
-        .dept-dot { background: #ea580c; }
-    }
-
-    &.dept-indigo {
-        background: #e0e7ff;
-        color: #4f46e5;
-        .dept-dot { background: #4f46e5; }
-    }
-
-    &.dept-teal {
-        background: #d1fae5;
-        color: #059669;
-        .dept-dot { background: #059669; }
-    }
-
-    &.dept-red {
-        background: #fee2e2;
-        color: #dc2626;
-        .dept-dot { background: #dc2626; }
-    }
-
-    &.dept-gray {
-        background: #f3f4f6;
-        color: #6b7280;
-        .dept-dot { background: #6b7280; }
-    }
-}
-
-.level-tag {
+.card-position {
     font-size: 13px;
     color: var(--black-200);
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin: 0 0 4px;
 }
 
-// Payroll + Join Date rows
-.card-meta {
-    border-top: 1px solid #f1f5f9;
-    padding-top: 12px;
+.card-id {
+    font-size: 13px;
+    color: var(--black-200);
+    margin: 0 0 16px;
+}
+
+.card-badges {
     display: flex;
-    justify-content: flex-end;
-    gap: 6px;
-}
-
-.meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.meta-label {
-    font-size: 12px;
-    color: #94a3b8;
-}
-
-.meta-value {
-    font-size: 12px;
-    color: #374151;
-    font-weight: 500;
+    gap: 8px;
+    margin-bottom: 32px;
 }
 
 // Pagination
@@ -711,28 +570,43 @@
 .badge {
     display: inline-block;
     padding: 4px 12px;
-    border-radius: 12px;
+    border-radius: 9999px;
     font-size: 12px;
     font-weight: 600;
     text-transform: capitalize;
 
-    &.badge-level {
-        background-color: var(--color-purple-100);
-        color: var(--color-purple-600);
+    // Status badges — solid filled
+    &.regular {
+        background: var(--color-green-500);
+        color: white;
     }
 
-    &.badge-regular {
-        background-color: var(--color-green-500);
-        color: #fff;
+    &.probationary {
+        background: var(--color-orange-500);
+        color: white;
     }
 
-    &.badge-probationary {
-        background-color: var(--color-orange-500);
-        color: #fff;
+    &.ojt {
+        background: var(--color-blue-500);
+        color: white;
     }
 
-    &.badge-ojt {
-        background-color: var(--color-blue-500);
-        color: #fff;
+    // Level badges — all use purple
+    &.senior,
+    &.mid,
+    &.junior,
+    &.lead {
+        background: var(--color-purple-500);
+        color: white;
+    }
+
+    &.primary {
+        background: var(--color-blue-600);
+        color: white;
+    }
+
+    &.side {
+        background: var(--black-100);
+        color: white;
     }
 }
