@@ -330,17 +330,12 @@ export class Employees {
   }
 
 
-  getLevelClass(_level: string): string {
-    return 'badge-level';
+  getLevelClass(level: string): string {
+    return level.toLowerCase();
   }
 
   getStatusClass(status: string): string {
-    const statusClasses: { [key: string]: string } = {
-      'Regular': 'badge-regular',
-      'Probationary': 'badge-probationary',
-      'OJT': 'badge-ojt',
-    };
-    return statusClasses[status] || 'badge-default';
+    return status.toLowerCase();
   }
 
   getSkillLevelClass(level: string): string {

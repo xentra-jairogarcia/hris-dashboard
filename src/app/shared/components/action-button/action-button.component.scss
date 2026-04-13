@@ -1,3 +1,8 @@
+:host.full-width {
+    display: block;
+    width: 100%;
+}
+
 .action-btn {
     border: none;
     border-radius: var(--radius-md);
@@ -71,6 +76,10 @@
         svg {
             color: white;
         }
+    }
+
+    &--full {
+        width: 100%;
     }
 
     &--outline {
