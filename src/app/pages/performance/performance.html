@@ -321,7 +321,7 @@
         <button class="assets-sub-tab" [class.active]="assetsTab === 'assignments'" (click)="assetsTab = 'assignments'">Assignments</button>
         <button class="assets-sub-tab" [class.active]="assetsTab === 'inventory'" (click)="assetsTab = 'inventory'">Inventory</button>
       </div>
-      <button class="assign-asset-btn">
+      <button class="assign-asset-btn" (click)="openAssetModal()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -448,6 +448,201 @@
             </div>
           </div>
         }
+      </div>
+    }
+
+
+    <!-- ===== Assign Asset Form ===== -->
+    @if (showAssignModal) {
+      <div class="form-overlay" (click)="closeAssetModal()">
+        <div class="asset-form-card" (click)="$event.stopPropagation()">
+        <div class="asset-form-header">
+          <h3>Assigned Asset</h3>
+        </div>
+        <div class="asset-form-body">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Department</label>
+              <div class="form-select">
+                <select [(ngModel)]="assignForm.department">
+                  <option>Software Development</option>
+                  <option>Design</option>
+                  <option>Marketing</option>
+                  <option>HR</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Assigned To</label>
+              <div class="form-select">
+                <select [(ngModel)]="assignForm.assignedTo">
+                  <option value="">Select Employee</option>
+                  <option>Aljo Cullamco</option>
+                  <option>Ralph Cruz</option>
+                  <option>Lorenz Fuentes</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Asset Type</label>
+              <div class="form-select">
+                <select [(ngModel)]="assignForm.assetType">
+                  <option>Laptop</option>
+                  <option>Phone</option>
+                  <option>Tablet</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Asset Name</label>
+              <div class="form-select">
+                <select [(ngModel)]="assignForm.assetName">
+                  <option>Macbook Pro 14"</option>
+                  <option>Macbook Air</option>
+                  <option>Iphone 17 Pro</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Date Issued</label>
+              <input class="form-input" type="date" [(ngModel)]="assignForm.dateIssued"/>
+            </div>
+            <div class="form-field">
+              <label>Return Date</label>
+              <input class="form-input" type="date" [(ngModel)]="assignForm.returnDate"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Return Condition</label>
+              <div class="form-select">
+                <select [(ngModel)]="assignForm.returnCondition">
+                  <option>New</option>
+                  <option>Good</option>
+                  <option>Fair</option>
+                  <option>Poor</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+            <div class="form-field"></div>
+          </div>
+        </div>
+        <div class="asset-form-footer">
+          <button class="form-cancel-btn" (click)="closeAssetModal()">Cancel</button>
+          <button class="form-submit-btn" (click)="submitAssignForm()">Assigned Asset</button>
+        </div>
+      </div>
+      </div>
+    }
+
+    <!-- ===== Add Asset to Inventory Form ===== -->
+    @if (showAddInventoryModal) {
+      <div class="form-overlay" (click)="closeInventoryModal()">
+        <div class="asset-form-card" (click)="$event.stopPropagation()">
+        <div class="asset-form-header">
+          <h3>Add Asset to Inventory</h3>
+        </div>
+        <div class="asset-form-body">
+          <div class="form-row">
+            <div class="form-field full-width">
+              <label>Asset Name</label>
+              <div class="form-input-with-btn">
+                <div class="form-select">
+                  <select [(ngModel)]="inventoryForm.assetName">
+                    <option>Macbook Pro 14"</option>
+                    <option>Macbook Air</option>
+                    <option>Iphone 17 Pro</option>
+                  </select>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
+                <button class="form-filter-btn">Filter</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Asset Type</label>
+              <div class="form-select">
+                <select [(ngModel)]="inventoryForm.assetType">
+                  <option>Laptop</option>
+                  <option>Phone</option>
+                  <option>Tablet</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Condition</label>
+              <div class="form-select">
+                <select [(ngModel)]="inventoryForm.condition">
+                  <option>New</option>
+                  <option>Good</option>
+                  <option>Fair</option>
+                  <option>Poor</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Quantity</label>
+              <input class="form-input" type="number" [(ngModel)]="inventoryForm.quantity" placeholder="Enter quantity"/>
+            </div>
+            <div class="form-field">
+              <label>Initial Status</label>
+              <div class="form-select">
+                <select [(ngModel)]="inventoryForm.initialStatus">
+                  <option>In Stock</option>
+                  <option>Assigned</option>
+                  <option>Out of Stock</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="asset-form-footer">
+          <button class="form-cancel-btn" (click)="closeInventoryModal()">Cancel</button>
+          <button class="form-submit-btn" (click)="submitInventoryForm()">Add to Inventory</button>
+        </div>
+      </div>
       </div>
     }
 

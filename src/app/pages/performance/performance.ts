@@ -75,6 +75,28 @@ export class Performance {
   assetsTab: 'assignments' | 'inventory' = 'assignments';
   assetSearchQuery = '';
 
+  // Modal state
+  showAssignModal = false;
+  showAddInventoryModal = false;
+
+  assignForm = {
+    department: 'Software Development',
+    assignedTo: '',
+    assetType: 'Laptop',
+    assetName: 'Macbook Pro 14"',
+    dateIssued: '',
+    returnDate: '',
+    returnCondition: 'New',
+  };
+
+  inventoryForm = {
+    assetName: 'Macbook Pro 14"',
+    assetType: 'Laptop',
+    condition: 'New',
+    quantity: null as number | null,
+    initialStatus: 'In Stock',
+  };
+
   selectedCareerEmployee = 'Aljo Cullamco';
   selectedCareerPosition = 'Front-End Developer';
 
@@ -164,5 +186,47 @@ export class Performance {
 
   getInventoryStatusClass(status: string): string {
     return status.toLowerCase().replace(' ', '-');
+  }
+
+  openAssetModal(): void {
+    if (this.assetsTab === 'assignments') {
+      this.showAssignModal = true;
+    } else {
+      this.showAddInventoryModal = true;
+    }
+  }
+
+  closeAssetModal(): void {
+    this.showAssignModal = false;
+    this.assignForm = {
+      department: 'Software Development',
+      assignedTo: '',
+      assetType: 'Laptop',
+      assetName: 'Macbook Pro 14"',
+      dateIssued: '',
+      returnDate: '',
+      returnCondition: 'New',
+    };
+  }
+
+  closeInventoryModal(): void {
+    this.showAddInventoryModal = false;
+    this.inventoryForm = {
+      assetName: 'Macbook Pro 14"',
+      assetType: 'Laptop',
+      condition: 'New',
+      quantity: null,
+      initialStatus: 'In Stock',
+    };
+  }
+
+  submitAssignForm(): void {
+    // Add assignment logic here
+    this.closeAssetModal();
+  }
+
+  submitInventoryForm(): void {
+    // Add inventory logic here
+    this.closeInventoryModal();
   }
 }
