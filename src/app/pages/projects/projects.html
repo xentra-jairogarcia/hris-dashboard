@@ -65,7 +65,7 @@
           </td>
           <td>{{ project.headcount }}</td>
           <td>
-            <app-text-link-button label="View Details" icon="eye" (clicked)="onViewDetails(project)"></app-text-link-button>
+            <app-button variant="text-link" label="View Details" icon="eye" (clicked)="onViewDetails(project)"></app-button>
           </td>
         </tr>
 
@@ -85,7 +85,7 @@
 <div class="pm-project-page">
   <header class="pm-project-header">
     <h1>Project Details</h1>
-    <app-icon-button icon="back" title="Go Back" (clicked)="closeProject()"></app-icon-button>
+    <app-button variant="icon-only" icon="back" title="Go Back" (clicked)="closeProject()"></app-button>
   </header>
 
   <div class="pm-project-card">

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
+import { ButtonComponent } from '../../shared/atoms/button/button.component';
 
 interface Task {
   name: string;
@@ -25,7 +25,7 @@ interface Employee {
 @Component({
   selector: 'app-onboarding',
   standalone: true,
-  imports: [CommonModule, RouterModule, TextLinkButtonComponent],
+  imports: [CommonModule, RouterModule, ButtonComponent],
   templateUrl: './onboarding.html',
   styleUrls: ['./onboarding.scss']
 })

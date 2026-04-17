@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="header">
         <h1>Request Management</h1>
-        <app-action-button label="New Request" variant="primary" size="large" icon="plus" (clicked)="openCreateForm()"></app-action-button>
+        <app-button label="New Request" variant="primary" size="large" icon="plus" (clicked)="openCreateForm()"></app-button>
     </div>
 
     <!-- Card -->
@@ -39,7 +39,7 @@
                     <td>{{ req.date }}</td>
                     <td><span class="status" [ngClass]="getStatusClass(req.status)">{{ req.status }}</span></td>
                     <td class="action">
-                        <app-text-link-button label="View Details" icon="eye" (clicked)="viewDetails(req)"></app-text-link-button>
+                        <app-button variant="text-link" label="View Details" icon="eye" (clicked)="viewDetails(req)"></app-button>
                     </td>
                 </tr>
                 }
@@ -55,7 +55,7 @@
 <div class="request-detail-page">
     <header class="detail-header">
         <h1>Request Details</h1>
-        <app-icon-button icon="back" title="Go Back" (clicked)="closeDetails()"></app-icon-button>
+        <app-button variant="icon-only" icon="back" title="Go Back" (clicked)="closeDetails()"></app-button>
     </header>
 
     <div class="detail-layout">

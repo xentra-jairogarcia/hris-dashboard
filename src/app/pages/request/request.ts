@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActionButtonComponent } from '../../shared/components/action-button/action-button.component';
-import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
-import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
-import { IconButtonComponent } from '../../shared/components/icon-button/icon-button.component';
+import { ButtonComponent } from '../../shared/atoms/button/button.component';
+import { TabButtonComponent } from '../../shared/molecules/tab-button/tab-button.component';
 
 interface RequestItem {
   id: string;
@@ -24,7 +22,7 @@ type ViewMode = 'list' | 'detail' | 'create';
 
 @Component({
   selector: 'app-request',
-  imports: [CommonModule, FormsModule, ActionButtonComponent, TabButtonComponent, TextLinkButtonComponent, IconButtonComponent],
+  imports: [CommonModule, FormsModule, ButtonComponent, TabButtonComponent],
   templateUrl: './request.html',
   styleUrl: './request.scss',
 })

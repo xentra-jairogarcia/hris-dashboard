@@ -45,7 +45,7 @@
               <td>{{ review.reviewerDate }}</td>
               <td><span class="badge" [ngClass]="getStatusClass(review.status)">{{ review.status }}</span></td>
               <td class="actions">
-                <app-text-link-button label="View Details" icon="eye" (click)="viewDetails(review)"></app-text-link-button>
+                <app-button variant="text-link" label="View Details" icon="eye" (clicked)="viewDetails(review)"></app-button>
               </td>
             </tr>
             }
@@ -400,7 +400,7 @@
                 <td>{{ asset.returnDate }}</td>
                 <td><span class="asset-status-badge" [ngClass]="getAssetStatusClass(asset.status)">{{ asset.status }}</span></td>
                 <td>
-                  <app-text-link-button label="View" icon="eye"></app-text-link-button>
+                  <app-button variant="text-link" label="View" icon="eye"></app-button>
                 </td>
               </tr>
             }

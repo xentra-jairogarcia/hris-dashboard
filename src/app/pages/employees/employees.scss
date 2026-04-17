@@ -7,20 +7,22 @@
 .page-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+    // align-items: center;
+    margin-bottom: 32px;
 
     h1 {
         font-size: var(--text-3xl);
+        font-family: var(--font-header);
     }
 }
 
 .view-toggle {
-    display: flex;
-    gap: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background: var(--color-green-50);
     border-radius: var(--radius-lg);
-    padding: 8px;
+    padding: 11px 16px;
 }
 
 // Stats container
@@ -28,11 +30,12 @@
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-color);
     background: white;
-    overflow: hidden;
+    overflow: visible;
 }
 
 // Stats + search row — single horizontal line
 .stats-actions-row {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,6 +52,7 @@
     font-size: 15px;
 
     .stats-icon {
+        // box-shadow: var(--shadow-sm);
         // width: 20px;
         // height: 20px;
     }
@@ -67,6 +71,98 @@
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.menu-anchor {
+    position: relative;
+    display: inline-flex;
+}
+
+.filter-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: var(--color-green-600);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.menu-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 20;
+    min-width: 220px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .menu-title {
+        margin: 0;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--black-300);
+    }
+
+    .menu-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .menu-item {
+        text-align: left;
+        padding: 8px 10px;
+        border: none;
+        border-radius: var(--radius-sm, 6px);
+        background: transparent;
+        font-size: 13px;
+        color: var(--black-500, #334155);
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover {
+            background: var(--color-green-50);
+        }
+
+        &.active {
+            background: var(--color-green-100);
+            color: var(--color-green-700);
+            font-weight: 600;
+        }
+    }
+
+    .menu-clear {
+        margin-top: 4px;
+        padding: 6px 10px;
+        border: none;
+        background: transparent;
+        color: var(--color-green-600);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: left;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .search-wrapper {
@@ -159,7 +255,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    padding: 8px 24px 24px;
+    padding:    24px;
 }
 
 // Employee Card
@@ -173,9 +269,11 @@
     align-items: center;
     text-align: center;
     transition: box-shadow 0.2s;
+    box-shadow: var(--shadow-md);
+
 
     &:hover {
-        box-shadow: var(--shadow-md);
+        box-shadow: var(--shadow-lg);
     }
 }
 
@@ -183,8 +281,8 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #e0e7ff;
-    color: #4f46e5;
+    background: var(--color-green-50);
+    color: var(--color--black-600);
     display: flex;
     align-items: center;
     justify-content: center;

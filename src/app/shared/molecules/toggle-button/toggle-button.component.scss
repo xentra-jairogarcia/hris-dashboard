@@ -2,17 +2,20 @@
     padding: 8px;
     border: none;
     background: transparent;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--black-300);
+    color: var(--black-400);
     transition: background 0.15s, color 0.15s;
 
-    &.active {
-        background: var(--color-green-50);
+    &:hover:not(.active) {
         color: var(--color-green-500);
-        border-radius: var(--radius-lg);
+    }
+
+    &.active {
+        background: var(--color-green-100);
+        color: var(--color-green-600);
     }
 }

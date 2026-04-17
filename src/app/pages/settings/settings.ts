@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
-import { ActionButtonComponent } from '../../shared/components/action-button/action-button.component';
+import { TabButtonComponent } from '../../shared/molecules/tab-button/tab-button.component';
+import { ButtonComponent } from '../../shared/atoms/button/button.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [FormsModule, TabButtonComponent, ActionButtonComponent],
+  imports: [FormsModule, TabButtonComponent, ButtonComponent],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
 })

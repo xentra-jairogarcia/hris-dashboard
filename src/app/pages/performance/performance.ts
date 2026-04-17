@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
-import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
+import { TabButtonComponent } from '../../shared/molecules/tab-button/tab-button.component';
+import { ButtonComponent } from '../../shared/atoms/button/button.component';
 
 interface Review {
   id: string;
@@ -63,7 +63,7 @@ interface InventoryItem {
 
 @Component({
   selector: 'app-performance',
-  imports: [CommonModule, FormsModule, TabButtonComponent, TextLinkButtonComponent],
+  imports: [CommonModule, FormsModule, TabButtonComponent, ButtonComponent],
   templateUrl: './performance.html',
   styleUrl: './performance.scss',
 })

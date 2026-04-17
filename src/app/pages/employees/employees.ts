@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToggleButtonComponent } from '../../shared/components/toggle-button/toggle-button.component';
-import { FilterSortButtonComponent } from '../../shared/components/filter-sort-button/filter-sort-button.component';
-import { ActionButtonComponent } from '../../shared/components/action-button/action-button.component';
-import { IconButtonComponent } from '../../shared/components/icon-button/icon-button.component';
-import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
-import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
+import { ToggleButtonComponent } from '../../shared/molecules/toggle-button/toggle-button.component';
+import { ButtonComponent } from '../../shared/atoms/button/button.component';
+import { TabButtonComponent } from '../../shared/molecules/tab-button/tab-button.component';
 
 interface Document {
   name: string;
@@ -48,16 +45,17 @@ interface Employee {
   skills: Skill[];
 }
 
+type SortKey = 'name-asc' | 'name-desc' | 'level' | 'id-asc' | 'id-desc';
+type StatusFilter = 'All' | 'Regular' | 'Probationary' | 'OJT';
+type LevelFilter = 'All' | 'Junior' | 'Mid' | 'Senior' | 'Lead';
+
 @Component({
   selector: 'app-employees',
   imports: [
     CommonModule,
     ToggleButtonComponent,
-    FilterSortButtonComponent,
-    ActionButtonComponent,
-    IconButtonComponent,
+    ButtonComponent,
     TabButtonComponent,
-    TextLinkButtonComponent,
   ],
   templateUrl: './employees.html',
   styleUrl: './employees.scss',
@@ -68,6 +66,27 @@ export class Employees {
   activeTab: 'personal' | 'employment' | 'documents' | 'projects' | 'skillset' = 'personal';
   currentPage = 1;
   itemsPerPage = 9;
+
+  searchTerm = '';
+  statusFilter: StatusFilter = 'All';
+  levelFilter: LevelFilter = 'All';
+  sortKey: SortKey = 'name-asc';
+  showFilterMenu = false;
+  showSortMenu = false;
+
+  statusOptions: StatusFilter[] = ['All', 'Regular', 'Probationary', 'OJT'];
+  levelOptions: LevelFilter[] = ['All', 'Junior', 'Mid', 'Senior', 'Lead'];
+  sortOptions: { key: SortKey; label: string }[] = [
+    { key: 'name-asc', label: 'Name (A–Z)' },
+    { key: 'name-desc', label: 'Name (Z–A)' },
+    { key: 'id-asc', label: 'Employee ID (Asc)' },
+    { key: 'id-desc', label: 'Employee ID (Desc)' },
+    { key: 'level', label: 'Level (Junior → Lead)' },
+  ];
+
+  private levelOrder: Record<Employee['level'], number> = {
+    Junior: 1, Mid: 2, Senior: 3, Lead: 4,
+  };
 
   private defaultDocs: Document[] = [
     { name: 'National ID', status: 'Uploaded' },
@@ -299,21 +318,86 @@ export class Employees {
     },
   ];
 
+  get filteredEmployees(): Employee[] {
+    const term = this.searchTerm.trim().toLowerCase();
+    const list = this.employees.filter((e) => {
+      if (this.statusFilter !== 'All' && e.status !== this.statusFilter) return false;
+      if (this.levelFilter !== 'All' && e.level !== this.levelFilter) return false;
+      if (term && !e.name.toLowerCase().includes(term) && !e.id.toLowerCase().includes(term)) return false;
+      return true;
+    });
+
+    const sorted = [...list];
+    switch (this.sortKey) {
+      case 'name-asc':  sorted.sort((a, b) => a.name.localeCompare(b.name)); break;
+      case 'name-desc': sorted.sort((a, b) => b.name.localeCompare(a.name)); break;
+      case 'id-asc':    sorted.sort((a, b) => a.id.localeCompare(b.id)); break;
+      case 'id-desc':   sorted.sort((a, b) => b.id.localeCompare(a.id)); break;
+      case 'level':     sorted.sort((a, b) => this.levelOrder[a.level] - this.levelOrder[b.level]); break;
+    }
+    return sorted;
+  }
+
   get paginatedEmployees(): Employee[] {
     const start = (this.currentPage - 1) * this.itemsPerPage;
-    return this.employees.slice(start, start + this.itemsPerPage);
+    return this.filteredEmployees.slice(start, start + this.itemsPerPage);
   }
 
   get totalPages(): number {
-    return Math.ceil(this.employees.length / this.itemsPerPage);
+    return Math.max(1, Math.ceil(this.filteredEmployees.length / this.itemsPerPage));
   }
 
   get showingStart(): number {
+    if (this.filteredEmployees.length === 0) return 0;
     return (this.currentPage - 1) * this.itemsPerPage + 1;
   }
 
   get showingEnd(): number {
-    return Math.min(this.currentPage * this.itemsPerPage, this.employees.length);
+    return Math.min(this.currentPage * this.itemsPerPage, this.filteredEmployees.length);
+  }
+
+  get activeFilterCount(): number {
+    return (this.statusFilter !== 'All' ? 1 : 0) + (this.levelFilter !== 'All' ? 1 : 0);
+  }
+
+  toggleFilterMenu(): void {
+    this.showFilterMenu = !this.showFilterMenu;
+    if (this.showFilterMenu) this.showSortMenu = false;
+  }
+
+  toggleSortMenu(): void {
+    this.showSortMenu = !this.showSortMenu;
+    if (this.showSortMenu) this.showFilterMenu = false;
+  }
+
+  applyStatusFilter(value: StatusFilter): void {
+    this.statusFilter = value;
+    this.currentPage = 1;
+  }
+
+  applyLevelFilter(value: LevelFilter): void {
+    this.levelFilter = value;
+    this.currentPage = 1;
+  }
+
+  clearFilters(): void {
+    this.statusFilter = 'All';
+    this.levelFilter = 'All';
+    this.currentPage = 1;
+  }
+
+  applySort(key: SortKey): void {
+    this.sortKey = key;
+    this.showSortMenu = false;
+  }
+
+  onSearchChange(value: string): void {
+    this.searchTerm = value;
+    this.currentPage = 1;
+  }
+
+  sortLabel(): string {
+    return this.sortOptions.find((o) => o.key === this.sortKey)?.label ?? 'Sort';
   }
 
   viewProfile(employee: Employee): void {

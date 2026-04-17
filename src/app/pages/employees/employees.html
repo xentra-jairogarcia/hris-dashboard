@@ -32,10 +32,73 @@
                     <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
                     </svg>
-                    <input type="search" placeholder="Search payroll or name">
+                    <input
+                        type="search"
+                        placeholder="Search by name or ID"
+                        [value]="searchTerm"
+                        (input)="onSearchChange($any($event.target).value)">
                 </div>
-                <app-filter-sort-button label="Filter" variant="outline"></app-filter-sort-button>
-                <app-filter-sort-button label="Sort" variant="filled"></app-filter-sort-button>
+
+                <div class="menu-anchor">
+                    <app-button
+                        variant="filter-sort-outline"
+                        label="Filter"
+                        icon="filter"
+                        (clicked)="toggleFilterMenu()">
+                    </app-button>
+                    @if (activeFilterCount > 0) {
+                        <span class="filter-count">{{ activeFilterCount }}</span>
+                    }
+                    @if (showFilterMenu) {
+                        <div class="menu-panel">
+                            <div class="menu-section">
+                                <p class="menu-title">Status</p>
+                                @for (opt of statusOptions; track opt) {
+                                    <button
+                                        class="menu-item"
+                                        [class.active]="statusFilter === opt"
+                                        (click)="applyStatusFilter(opt)">
+                                        {{ opt }}
+                                    </button>
+                                }
+                            </div>
+                            <div class="menu-section">
+                                <p class="menu-title">Level</p>
+                                @for (opt of levelOptions; track opt) {
+                                    <button
+                                        class="menu-item"
+                                        [class.active]="levelFilter === opt"
+                                        (click)="applyLevelFilter(opt)">
+                                        {{ opt }}
+                                    </button>
+                                }
+                            </div>
+                            <button class="menu-clear" (click)="clearFilters()">Clear filters</button>
+                        </div>
+                    }
+                </div>
+
+                <div class="menu-anchor">
+                    <app-button
+                        variant="filter-sort-filled"
+                        label="Sort"
+                        icon="sort"
+                        (clicked)="toggleSortMenu()">
+                    </app-button>
+                    @if (showSortMenu) {
+                        <div class="menu-panel">
+                            <p class="menu-title">Sort by</p>
+                            @for (opt of sortOptions; track opt.key) {
+                                <button
+                                    class="menu-item"
+                                    [class.active]="sortKey === opt.key"
+                                    (click)="applySort(opt.key)">
+                                    {{ opt.label }}
+                                </button>
+                            }
+                        </div>
+                    }
+                </div>
             </div>
         </div>
 
@@ -53,7 +116,7 @@
             </tr>
             </thead>
             <tbody>
-            @for (emp of employees; track emp.id) {
+            @for (emp of paginatedEmployees; track $index) {
             <tr>
                 <td>{{ emp.id }}</td>
                 <td>
@@ -65,7 +128,7 @@
                 <td>{{ emp.position }}</td>
                 <td><span class="badge badge-level">{{ emp.level }}</span></td>
                 <td><span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span></td>
-                <td><app-text-link-button label="View Profile" icon="eye" (clicked)="viewProfile(emp)"></app-text-link-button></td>
+                <td><app-button variant="text-link" label="View Profile" icon="eye" (clicked)="viewProfile(emp)"></app-button></td>
             </tr>
             }
             </tbody>
@@ -75,7 +138,7 @@
         <!-- Card View -->
         @if (viewMode === 'card') {
         <div class="cards-grid">
-            @for (emp of employees; track emp.id) {
+            @for (emp of paginatedEmployees; track $index) {
             <div class="employee-card">
                 <div class="card-avatar">{{ emp.initials }}</div>
                 <h4 class="card-name">{{ emp.name }}</h4>
@@ -85,14 +148,14 @@
                     <span class="badge" [ngClass]="getStatusClass(emp.status)">{{ emp.status }}</span>
                     <span class="badge" [ngClass]="getLevelClass(emp.level)">{{ emp.level }}</span>
                 </div>
-                <app-action-button
+                <app-button
                     label="View Profile"
                     variant="blue"
                     size="medium"
                     icon="eye"
                     [fullWidth]="true"
                     (clicked)="viewProfile(emp)">
-                </app-action-button>
+                </app-button>
             </div>
             }
         </div>
@@ -100,7 +163,7 @@
         <!-- Pagination -->
         <div class="pagination-row">
             <span class="pagination-info">
-                Showing {{ showingStart }} to {{ showingEnd }} of {{ employees.length }} entries
+                Showing {{ showingStart }} to {{ showingEnd }} of {{ filteredEmployees.length }} entries
             </span>
             <div class="page-numbers">
                 @for (page of [1, 2, 3, 4, 5]; track page) {
@@ -128,7 +191,7 @@
 <div class="employee-profile">
     <header class="profile-header">
         <h1>Employee Profile</h1>
-        <app-icon-button icon="back" title="Go Back" (clicked)="closeProfile()"></app-icon-button>
+        <app-button variant="icon-only" icon="back" title="Go Back" (clicked)="closeProfile()"></app-button>
     </header>
 
     <div class="profile-card">
@@ -142,7 +205,7 @@
                     <p class="profile-id">{{ selectedEmployee.id }}</p>
                 </div>
             </div>
-            <app-action-button label="Promote" variant="blue" size="medium" icon="star"></app-action-button>
+            <app-button label="Promote" variant="blue" size="medium" icon="star"></app-button>
         </div>
     </div>
 

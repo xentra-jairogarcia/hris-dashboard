@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TextLinkButtonComponent } from '../../shared/components/text-link-button/text-link-button.component';
-import { IconButtonComponent } from '../../shared/components/icon-button/icon-button.component';
-import { TabButtonComponent } from '../../shared/components/tab-button/tab-button.component';
+import { ButtonComponent } from '../../shared/atoms/button/button.component';
+import { TabButtonComponent } from '../../shared/molecules/tab-button/tab-button.component';
 
 export interface AssignedEmployee {
   initials: string;
@@ -28,7 +27,7 @@ export interface Project {
 
 @Component({
   selector: 'app-projects',
-  imports: [CommonModule, FormsModule, TextLinkButtonComponent, IconButtonComponent, TabButtonComponent],
+  imports: [CommonModule, FormsModule, ButtonComponent, TabButtonComponent],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
