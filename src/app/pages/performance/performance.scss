@@ -8,7 +8,7 @@
 .performance-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+
   margin-bottom: 32px;
 
   h1 {
@@ -444,10 +444,10 @@
 .career-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   h1 {
     font-size: var(--text-3xl);
+    font-family: var(--font-header);
   }
 }
 
@@ -702,10 +702,10 @@
 .assets-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   h1 {
     font-size: var(--text-3xl);
+    font-family: var(--font-header);
   }
 }
 

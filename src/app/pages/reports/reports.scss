@@ -1,5 +1,5 @@
 .reports-page {
-  padding: 24px 32px;
+  padding: 32px;
 }
 
 .reports-header {
@@ -10,10 +10,8 @@
 }
 
 .page-title {
-  font-family: var(--font-family-header);
-  font-size: var(--text-2xl);
-  font-weight: var(--font-semibold);
-  color: var(--black-500);
+    font-size: var(--text-3xl);
+    font-family: var(--font-header);
 }
 
 .reports-card {
