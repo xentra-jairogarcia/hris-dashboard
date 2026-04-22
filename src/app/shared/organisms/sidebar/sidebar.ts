@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
 
@@ -13,8 +13,18 @@ export class Sidebar {
   private router = inject(Router);
 
   user = this.auth.user;
+  showLogoutConfirm = signal(false);
 
-  logout(): void {
+  openLogoutConfirm(): void {
+    this.showLogoutConfirm.set(true);
+  }
+
+  cancelLogout(): void {
+    this.showLogoutConfirm.set(false);
+  }
+
+  confirmLogout(): void {
+    this.showLogoutConfirm.set(false);
     this.auth.logout();
     this.router.navigateByUrl('/login');
   }

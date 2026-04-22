@@ -10,15 +10,41 @@
   overflow: hidden;
 }
 
-.login-bg {
+.login-overlay {
   position: absolute;
-  inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(420px 300px at 12% 22%, var(--color-green-50)  0%, transparent 70%),
-    radial-gradient(420px 320px at 22% 78%, var(--color-blue-50)   0%, transparent 70%),
-    radial-gradient(420px 300px at 82% 18%, var(--color-purple-50) 0%, transparent 70%),
-    radial-gradient(420px 320px at 85% 82%, var(--color-orange-50) 0%, transparent 70%);
+  pointer-events: none;
+  user-select: none;
+
+  &--top-left {
+    top: -40px;
+    left: -40px;
+    width: 480px;
+    max-width: 50vw;
+    height: auto;
+  }
+}
+
+.login-ellipse {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.85;
+
+  &--top-right {
+    top: -120px;
+    right: -120px;
+    width: 360px;
+    height: auto;
+  }
+
+  &--bottom-left {
+    bottom: -140px;
+    left: -100px;
+    width: 380px;
+    height: auto;
+  }
 }
 
 .login-card {

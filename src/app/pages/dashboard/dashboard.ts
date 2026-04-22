@@ -67,7 +67,7 @@ export class Dashboard implements OnInit {
     datasets: [
       {
         label: 'Headcount',
-        data: [58, 42, 35, 68, 45, 56],
+        data: [58, 42, 35, 68, 45, 67],
         backgroundColor: '',
         borderRadius: 4,
       },
@@ -77,6 +77,13 @@ export class Dashboard implements OnInit {
   headcountChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: { top: 12, right: 20, bottom: 4, left: 4 },
+    },
+    animation: {
+      duration: 900,
+      easing: 'easeOutQuart',
+    },
     plugins: { legend: { display: false } },
     scales: {
       y: { beginAtZero: true, ticks: { stepSize: 20 } },
@@ -103,10 +110,20 @@ export class Dashboard implements OnInit {
   attritionChartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: { top: 12, right: 20, bottom: 4, left: 4 },
+    },
+    animation: {
+      duration: 1000,
+      easing: 'easeOutQuart',
+    },
     plugins: { legend: { display: false } },
     scales: {
       y: { beginAtZero: true, ticks: { stepSize: 200 } },
-      x: { grid: { display: false } },
+      x: {
+        grid: { display: false },
+        offset: true,
+      },
     },
   };
 
