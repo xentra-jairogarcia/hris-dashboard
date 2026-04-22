@@ -216,6 +216,24 @@
     transition: color 0.2s ease;
 }
 
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 8px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover {
+        background: var(--color-green-50);
+        color: var(--primary-color);
+    }
+}
+
 .main-content {
     flex: 1;
     margin-left: 280px;

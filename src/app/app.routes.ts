@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './core/layouts/main-layout/main-layout';
+import { authGuard, guestGuard } from './core/auth/auth.guard';
+import { Login } from './pages/login/login';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Employees } from './pages/employees/employees';
 import { Projects } from './pages/projects/projects';
@@ -12,9 +14,11 @@ import { Settings } from './pages/settings/settings';
 
 
 export const routes: Routes = [
+  { path: 'login', component: Login, canActivate: [guestGuard] },
   {
     path: '',
     component: MainLayout,
+    canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: Dashboard },

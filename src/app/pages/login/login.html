@@ -1,0 +1,105 @@
+<div class="login-page">
+  <div class="login-bg" aria-hidden="true"></div>
+
+  <div class="login-card">
+    <img src="/xentra.png" alt="Xentra" class="login-logo">
+
+    @if (step === 'email') {
+      <h1 class="login-title">Sign in your email</h1>
+      <p class="login-sub">Enter your company email to continue.</p>
+
+      <form (ngSubmit)="submitEmail()" class="login-form">
+        <label class="field">
+          <input
+            type="email"
+            name="email"
+            class="input"
+            placeholder="name@xentragroup.com"
+            autocomplete="email"
+            [(ngModel)]="email"
+            [class.input--error]="emailError">
+          <span class="field-hint">Use your company email</span>
+          @if (emailError) {
+            <span class="field-error">{{ emailError }}</span>
+          }
+        </label>
+
+        <app-button
+          label="Continue"
+          variant="primary"
+          size="large"
+          type="submit"
+          [fullWidth]="true">
+        </app-button>
+
+        <p class="login-foot">We'll send you a secure login link.</p>
+      </form>
+    }
+
+    @if (step === 'check-email') {
+      <h1 class="login-title">Check your email</h1>
+      <p class="login-sub">
+        We sent a secure login link and a 6-digit code to <strong>{{ email }}</strong>
+      </p>
+
+      <app-button
+        label="Enter Code"
+        variant="primary"
+        size="large"
+        [fullWidth]="true"
+        (clicked)="goToVerify()">
+      </app-button>
+
+      <button type="button" class="link-btn" (click)="changeEmail()">Change email</button>
+    }
+
+    @if (step === 'verify') {
+      <h1 class="login-title">Check your email for your passcode</h1>
+      <p class="login-sub">
+        Enter the passcode below to continue, or click the magic link to log in instantly.
+      </p>
+
+      <form (ngSubmit)="submitCode()" class="login-form">
+        <label class="field">
+          <input
+            type="text"
+            inputmode="numeric"
+            name="code"
+            class="input input--otp"
+            placeholder="••••••"
+            maxlength="6"
+            autocomplete="one-time-code"
+            [ngModel]="code"
+            (ngModelChange)="onCodeInput($event)"
+            [class.input--error]="codeError">
+          <span class="field-hint">Please enter the one-time password sent to your email.</span>
+          @if (codeError) {
+            <span class="field-error">{{ codeError }}</span>
+          }
+        </label>
+
+        <app-button
+          label="Submit"
+          variant="primary"
+          size="large"
+          type="submit"
+          [fullWidth]="true">
+        </app-button>
+
+        <p class="login-foot">
+          Didn't get the code? <button type="button" class="link-inline" (click)="resendCode()">Resend code</button>
+        </p>
+      </form>
+    }
+
+    @if (step === 'signing-in') {
+      <div class="spinner" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M21 12a9 9 0 11-6.219-8.56"/>
+        </svg>
+      </div>
+      <h1 class="login-title login-title--sm">Signing you in…</h1>
+      <p class="login-sub">Please wait.</p>
+    }
+  </div>
+</div>
