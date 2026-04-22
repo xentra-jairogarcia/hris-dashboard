@@ -1,7 +1,6 @@
 :host {
   font-family: var(--font-family-body);
   background: #f9fafb;
-  color: var(--black-400);
   min-height: 100vh;
   display: block;
 }
@@ -23,7 +22,6 @@
   font-size: var(--text-3xl);
   font-family: var(--font-header);
   margin-bottom: 32px;
-  color: var(--black-500);
 }
 
 /* Go Back button */

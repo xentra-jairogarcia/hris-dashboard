@@ -5,11 +5,11 @@
     .header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         margin-bottom: 32px;
 
         h1 {
             font-size: var(--text-3xl);
+            font-family: var(--font-header);
         }
     }
 
@@ -93,8 +93,7 @@
 
     h1 {
         font-size: var(--text-3xl);
-        font-weight: 700;
-        color: var(--black-500);
+        font-family: var(--font-header);
         margin: 0;
     }
 }

@@ -1,1 +1,175 @@
-<p>reports works!</p>
+<div class="reports-page">
+  <div class="reports-header">
+    <h1 class="page-title">Reports</h1>
+    <app-button label="Export" variant="primary" size="medium"></app-button>
+  </div>
+
+  <div class="reports-card">
+    <div class="reports-tabs">
+      <app-tab-button label="Headcount"        [active]="activeTab === 'headcount'"        (tabClick)="activeTab = 'headcount'"></app-tab-button>
+      <app-tab-button label="GAD"              [active]="activeTab === 'gad'"              (tabClick)="activeTab = 'gad'"></app-tab-button>
+      <app-tab-button label="Attrition"        [active]="activeTab === 'attrition'"        (tabClick)="activeTab = 'attrition'"></app-tab-button>
+      <app-tab-button label="Onboarding"       [active]="activeTab === 'onboarding'"       (tabClick)="activeTab = 'onboarding'"></app-tab-button>
+      <app-tab-button label="Exit"             [active]="activeTab === 'exit'"             (tabClick)="activeTab = 'exit'"></app-tab-button>
+      <app-tab-button label="Project Staffing" [active]="activeTab === 'project-staffing'" (tabClick)="activeTab = 'project-staffing'"></app-tab-button>
+    </div>
+
+    <div class="reports-filters">
+      <app-select-button
+        variant="filled"
+        size="medium"
+        [options]="periodOptions"
+        [(ngModel)]="period">
+      </app-select-button>
+      <app-select-button
+        variant="outline"
+        size="medium"
+        [options]="subsidiaryOptions"
+        [(ngModel)]="subsidiary">
+      </app-select-button>
+    </div>
+
+    <!-- ── Headcount ──────────────────────────────── -->
+    @if (activeTab === 'headcount') {
+      <div class="stat-grid">
+        <div class="stat-card">
+          <p class="stat-card__label">Total Headcount</p>
+          <p class="stat-card__value">{{ stats.total }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Male</p>
+          <p class="stat-card__value">{{ stats.male }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Female</p>
+          <p class="stat-card__value">{{ stats.female }}</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="chart-card__title">Headcount by Department</h3>
+        <div class="chart-canvas-wrap">
+          <canvas baseChart [data]="barChartData" [options]="barChartOptions" type="bar"></canvas>
+        </div>
+      </div>
+    }
+
+    <!-- ── GAD ────────────────────────────────────── -->
+    @if (activeTab === 'gad') {
+      <div class="chart-grid chart-grid--2">
+        <div class="chart-card">
+          <h3 class="chart-card__title">Gender Distribution</h3>
+          <div class="chart-canvas-wrap">
+            <canvas baseChart [data]="genderPieData" [options]="genderPieOptions" type="pie"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3 class="chart-card__title">Gender By Department</h3>
+          <div class="chart-canvas-wrap">
+            <canvas baseChart [data]="genderByDeptData" [options]="genderByDeptOptions" type="bar"></canvas>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ── Attrition ──────────────────────────────── -->
+    @if (activeTab === 'attrition') {
+      <div class="stat-grid">
+        <div class="stat-card stat-card--warm">
+          <p class="stat-card__label">Current Attrition Rate</p>
+          <p class="stat-card__value">{{ attritionStats.currentRate }}</p>
+        </div>
+        <div class="stat-card stat-card--warm">
+          <p class="stat-card__label">Total Exits (6 months)</p>
+          <p class="stat-card__value">{{ attritionStats.totalExits }}</p>
+        </div>
+        <div class="stat-card stat-card--warm">
+          <p class="stat-card__label">Average Tenure</p>
+          <p class="stat-card__value">{{ attritionStats.averageTenure }}</p>
+        </div>
+      </div>
+
+      <div class="chart-card chart-card--plain">
+        <div class="chart-canvas-wrap chart-canvas-wrap--tall">
+          <canvas baseChart [data]="attritionLineData" [options]="attritionLineOptions" type="line"></canvas>
+        </div>
+      </div>
+    }
+
+    <!-- ── Onboarding ─────────────────────────────── -->
+    @if (activeTab === 'onboarding') {
+      <div class="stat-grid">
+        <div class="stat-card">
+          <p class="stat-card__label">Active Onboardings</p>
+          <p class="stat-card__value">{{ onboardingStats.active }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Completed</p>
+          <p class="stat-card__value">{{ onboardingStats.completed }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Average Days</p>
+          <p class="stat-card__value">{{ onboardingStats.averageDays }}</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="chart-card__title">Onboarding Starts vs. Completions</h3>
+        <div class="chart-canvas-wrap">
+          <canvas baseChart [data]="onboardingChartData" [options]="onboardingChartOptions" type="bar"></canvas>
+        </div>
+      </div>
+    }
+
+    <!-- ── Exit ───────────────────────────────────── -->
+    @if (activeTab === 'exit') {
+      <div class="stat-grid">
+        <div class="stat-card">
+          <p class="stat-card__label">Total Exits</p>
+          <p class="stat-card__value">{{ exitStats.total }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Voluntary</p>
+          <p class="stat-card__value">{{ exitStats.voluntary }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Involuntary</p>
+          <p class="stat-card__value">{{ exitStats.involuntary }}</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="chart-card__title">Exit Reasons</h3>
+        <div class="chart-canvas-wrap">
+          <canvas baseChart [data]="exitReasonsData" [options]="exitReasonsOptions" type="doughnut"></canvas>
+        </div>
+      </div>
+    }
+
+    <!-- ── Project Staffing ───────────────────────── -->
+    @if (activeTab === 'project-staffing') {
+      <div class="stat-grid">
+        <div class="stat-card">
+          <p class="stat-card__label">Active Projects</p>
+          <p class="stat-card__value">{{ staffingStats.activeProjects }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Staffed Roles</p>
+          <p class="stat-card__value">{{ staffingStats.staffedRoles }}</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__label">Open Roles</p>
+          <p class="stat-card__value">{{ staffingStats.openRoles }}</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="chart-card__title">Staffing by Project</h3>
+        <div class="chart-canvas-wrap">
+          <canvas baseChart [data]="staffingChartData" [options]="staffingChartOptions" type="bar"></canvas>
+        </div>
+      </div>
+    }
+  </div>
+</div>

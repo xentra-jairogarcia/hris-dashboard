@@ -6,7 +6,8 @@ import { Projects } from './pages/projects/projects';
 import { Request } from './pages/request/request';
 import { Onboarding} from './pages/onboarding/onboarding';
 import { Performance } from './pages/performance/performance';
-import { Notifications } from './pages/notifications/notifications';  
+import { Reports } from './pages/reports/reports';
+import { Notifications } from './pages/notifications/notifications';
 import { Settings } from './pages/settings/settings';
 
 
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: 'request', component: Request },
       { path: 'onboarding', component: Onboarding },
       { path: 'performance', component: Performance },
+      { path: 'reports', component: Reports },
       { path: 'notifications', component: Notifications },
       { path: 'settings', component: Settings }
     ]
