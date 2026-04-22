@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { BaseChartDirective } from 'ng2-charts';
+import type { ChartConfiguration } from 'chart.js';
 
 interface StatCard {
   title: string;
@@ -32,11 +34,11 @@ interface OnboardingItem {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, BaseChartDirective],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   stats: StatCard[] = [
     { title: 'Total Employees', value: 67, color: 'blue', icon: '/total.png' },
     { title: 'Active Employees', value: 14, color: 'green', icon: '/active.png' },
@@ -58,6 +60,68 @@ export class Dashboard {
   onboardingItems: OnboardingItem[] = [
     { initials: 'AC', name: 'Al Cedrick Garcia', role: 'Software Engineer', startDate: '2026-01-28', progress: 35 },
   ];
+
+  // ── Total Headcount ─ bar ─
+  headcountChartData: ChartConfiguration<'bar'>['data'] = {
+    labels: ['July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [
+      {
+        label: 'Headcount',
+        data: [58, 42, 35, 68, 45, 56],
+        backgroundColor: '',
+        borderRadius: 4,
+      },
+    ],
+  };
+
+  headcountChartOptions: ChartConfiguration<'bar'>['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 20 } },
+      x: { grid: { display: false } },
+    },
+  };
+
+  // ── Attrition Rate ─ line ─
+  attritionChartData: ChartConfiguration<'line'>['data'] = {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [
+      {
+        label: 'Attrition',
+        data: [700, 450, 620, 500, 680, 550, 220],
+        borderColor: '',
+        backgroundColor: 'transparent',
+        tension: 0.3,
+        pointRadius: 3,
+        pointBackgroundColor: '',
+      },
+    ],
+  };
+
+  attritionChartOptions: ChartConfiguration<'line'>['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 200 } },
+      x: { grid: { display: false } },
+    },
+  };
+
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
+  ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const css = getComputedStyle(document.documentElement);
+    const blue  = css.getPropertyValue('--color-blue-500').trim();
+    const green = css.getPropertyValue('--color-green-500').trim();
+
+    this.headcountChartData.datasets[0].backgroundColor = blue;
+    this.attritionChartData.datasets[0].borderColor = green;
+    this.attritionChartData.datasets[0].pointBackgroundColor = green;
+  }
 
   getStatusClass(status: string): string {
     return status.toLowerCase();

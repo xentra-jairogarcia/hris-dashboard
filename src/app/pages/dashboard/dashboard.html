@@ -21,12 +21,24 @@
 
         <div class="card">
             <h3>Total Headcount</h3>
-            <div class="chart-placeholder"></div>
+            <div class="chart-canvas-wrap">
+                <canvas baseChart
+                        [data]="headcountChartData"
+                        [options]="headcountChartOptions"
+                        type="bar">
+                </canvas>
+            </div>
         </div>
 
         <div class="card">
             <h3>Attrition Rate</h3>
-            <div class="chart-placeholder"></div>
+            <div class="chart-canvas-wrap">
+                <canvas baseChart
+                        [data]="attritionChartData"
+                        [options]="attritionChartOptions"
+                        type="line">
+                </canvas>
+            </div>
         </div>
 
     </div>
