@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,9 +20,16 @@ export class Login {
 
   step: LoginStep = 'email';
   email = '';
-  code = '';
   emailError = '';
   codeError = '';
+
+  otpDigits: string[] = ['', '', '', '', '', ''];
+
+  @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef<HTMLInputElement>>;
+
+  get code(): string {
+    return this.otpDigits.join('');
+  }
 
   submitEmail(): void {
     this.emailError = '';
@@ -44,20 +51,58 @@ export class Login {
   }
 
   goToVerify(): void {
-    this.code = '';
+    this.otpDigits = ['', '', '', '', '', ''];
     this.codeError = '';
     this.step = 'verify';
   }
 
   changeEmail(): void {
     this.step = 'email';
-    this.code = '';
+    this.otpDigits = ['', '', '', '', '', ''];
     this.codeError = '';
   }
 
-  onCodeInput(value: string): void {
-    this.code = value.replace(/\D/g, '').slice(0, 6);
+  onOtpKeydown(event: KeyboardEvent, index: number): void {
+    const inputs = this.otpInputs.toArray();
+
+    if (event.key === 'Backspace') {
+      if (this.otpDigits[index] !== '') {
+        this.otpDigits[index] = '';
+      } else if (index > 0) {
+        this.otpDigits[index - 1] = '';
+        inputs[index - 1].nativeElement.focus();
+      }
+      this.codeError = '';
+      event.preventDefault();
+    } else if (event.key === 'ArrowLeft' && index > 0) {
+      inputs[index - 1].nativeElement.focus();
+    } else if (event.key === 'ArrowRight' && index < 5) {
+      inputs[index + 1].nativeElement.focus();
+    }
+  }
+
+  onOtpInput(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    const val = input.value.replace(/\D/g, '').slice(-1);
+    this.otpDigits[index] = val;
     this.codeError = '';
+
+    if (val && index < 5) {
+      const inputs = this.otpInputs.toArray();
+      inputs[index + 1].nativeElement.focus();
+    }
+  }
+
+  onOtpPaste(event: ClipboardEvent): void {
+    event.preventDefault();
+    const pasted = event.clipboardData?.getData('text') ?? '';
+    const digits = pasted.replace(/\D/g, '').slice(0, 6).split('');
+    digits.forEach((d, i) => {
+      this.otpDigits[i] = d;
+    });
+    const inputs = this.otpInputs.toArray();
+    const focusIndex = Math.min(digits.length, 5);
+    inputs[focusIndex].nativeElement.focus();
   }
 
   submitCode(): void {
@@ -75,6 +120,6 @@ export class Login {
 
   resendCode(): void {
     this.codeError = '';
-    this.code = '';
+    this.otpDigits = ['', '', '', '', '', ''];
   }
 }

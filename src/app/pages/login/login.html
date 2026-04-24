@@ -62,23 +62,28 @@
       </p>
 
       <form (ngSubmit)="submitCode()" class="login-form">
-        <label class="field">
-          <input
-            type="text"
-            inputmode="numeric"
-            name="code"
-            class="input input--otp"
-            placeholder="••••••"
-            maxlength="6"
-            autocomplete="one-time-code"
-            [ngModel]="code"
-            (ngModelChange)="onCodeInput($event)"
-            [class.input--error]="codeError">
+        <div class="otp-field">
+          <div class="otp-boxes">
+            @for (digit of otpDigits; track $index) {
+              <input
+                type="text"
+                inputmode="numeric"
+                maxlength="1"
+                class="otp-box"
+                [class.otp-box--filled]="digit !== ''"
+                [class.otp-box--error]="codeError"
+                [value]="digit"
+                (keydown)="onOtpKeydown($event, $index)"
+                (input)="onOtpInput($event, $index)"
+                (paste)="onOtpPaste($event)"
+                #otpInput>
+            }
+          </div>
           <span class="field-hint">Please enter the one-time password sent to your email.</span>
           @if (codeError) {
             <span class="field-error">{{ codeError }}</span>
           }
-        </label>
+        </div>
 
         <app-button
           label="Submit"
